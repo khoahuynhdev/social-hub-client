@@ -1,19 +1,4 @@
-// my service worker here
-
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('offline.js',{scope: '/'})
-      .then(registration => {
-        // success
-        console.log('Service worker registration successful with scope', registration.scope);
-      })
-      .catch(err => {
-        console.log('ServiceWorker registration failed: ', err);
-      })
-  })
-}
-
-/* // This optional code is used to register a service worker.
+// This optional code is used to register a service worker.
 // register() is not called by default.
 
 // This lets the app load faster on subsequent visits in production, and gives
@@ -148,4 +133,3 @@ export function unregister() {
     });
   }
 }
- */
