@@ -3,13 +3,12 @@ import { connect } from 'react-redux';
 class ActivityDetail extends Component {
   constructor(props) {
     super(props);
-    this.setState = {
-
+    this.setState = {      
     }
   }
 
   render() {
-    const { A_NAME, CONTENT, STARTDATE, ENDDATE, AT_NAME,AC_POINT } = this.props.activity;
+    const { A_NAME, CONTENT, STARTDATE, ENDDATE, AT_NAME, AC_POINT } = this.props.activity;
     return (
       <div
         className="modal fade"
@@ -46,7 +45,7 @@ class ActivityDetail extends Component {
               </div>
               <hr></hr>
               <img
-                src="http://huflit.edu.vn/uploads/news/2016_10/14556502_1430786976934655_6410146407085835159_o.jpg"
+                src="./img/huflit-event.jpg"
                 className="img-fluid rounded w-75 mt-2"
                 alt="nothing"
               />
@@ -57,8 +56,7 @@ class ActivityDetail extends Component {
                 <h6>Điểm rèn luyện: {AC_POINT}</h6>
               </div>
             </div>
-            <div className="modal-footer">
-              <button className="btn btn-myapp2 m-1">Tham Gia</button>
+            <div className="modal-footer">              
               <button type="button" className="btn btn-secondary" data-dismiss="modal">
                 Đóng
               </button>

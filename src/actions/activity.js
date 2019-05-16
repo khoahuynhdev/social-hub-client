@@ -14,7 +14,6 @@ export const fetchActivities = (data) => {
           }
         })
         .catch(error => {
-          console.log(error);
           dispatch(getError(error));
         })
     }, 1000);
@@ -56,4 +55,17 @@ export const getActivities = (activities) => {
     type: types.GET_ACTIVITIES,
     activities
   }
+}
+
+export const joinActivity = (data) => {
+	return dispatch => {
+		axios.post(`http://localhost:5000/api/activities/joinactivity`, data)
+		.then(res => {
+			dispatch(getError(null));
+			console.log(res.data);
+		})
+		.catch(error => {			
+			dispatch(getError(error));
+		})
+	}
 }

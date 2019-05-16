@@ -71,10 +71,10 @@ class MainDashB extends Component {
               dataLength={this.props.activities.length}
               next={this.fetchMoreData}
               hasMore={this.state.hasMore}
-              loader={<h4>Loading...</h4>}
+              loader={<h4>đang tải...</h4>}
               endMessage={
                 <p style={{ textAlign: "center" }}>
-                  <b>Yay! You have seen it all</b>
+                  <b>Bạn đã thấy hết sự kiện</b>
                 </p>
               }
             >
@@ -83,9 +83,10 @@ class MainDashB extends Component {
                   <ActivityD activity={item} key={index} />
                 </div>
               })}
-            </InfiniteScroll>
-          </div>
+            </InfiniteScroll>            
+          </div>          
         </div>
+        {this.props.errors && this.props.errors.config ? <div>Đã có lỗi xảy ra, vui lòng thử lại sau</div> : null}
       </div>
     );
   }
@@ -93,7 +94,8 @@ class MainDashB extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    activities: state.activities
+    activities: state.activities,
+    errors: state.errors
   }
 }
 
