@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { setActivityDetail } from '../../../actions/activity';
 
-class ActivityD extends Component {
+class ActivityD extends PureComponent {
 
   viewDetail = () => {
     this.props.setActivityDetail(this.props.activity)
   }
-  render() {
+  render() {    
     const { A_NAME } = this.props.activity;
     return (
       <div className="card mt-2">

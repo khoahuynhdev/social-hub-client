@@ -67,16 +67,16 @@ class ActivePage extends Component {
           <form onSubmit={this.onSubmit} className="ml-auto mr-auto mt-10">
             <div className="form-group">
               <label htmlFor="ID">Mã số Sinh Viên</label>
-              <input onChange={this.onChange} type="text" className="form-control" name="ID" id="ID" aria-describedby="IDHelp" placeholder="mã số sinh viên" />
+              <input onChange={this.onChange} type="text" className="form-control" name="ID" id="ID" aria-describedby="IDHelp" placeholder="mã số sinh viên" required />
               <small id="IDHelp" className="form-text text-muted">Mã số sinh viên do trường cấp</small>
             </div>
             <div className="form-group">
               <label htmlFor="FullName">Họ Tên</label>
-              <input onChange={this.onChange} type="text" className="form-control" name="FullName" id="FullName" placeholder="Họ Tên" />
+              <input onChange={this.onChange} type="text" className="form-control" name="FullName" id="FullName" placeholder="Họ Tên"  required />
             </div>
             <div className="form-group">
               <label htmlFor="BirthDate">Ngày Sinh</label>
-              <input onChange={this.onChange} type="date" className="form-control" name="BirthDate" id="BirthDate" placeholder="Ngày Sinh" />
+              <input onChange={this.onChange} type="date" className="form-control" name="BirthDate" id="BirthDate" placeholder="Ngày Sinh" required />
             </div>
             <div className="form-group">
               <label htmlFor="Faculty">Khoa</label>
