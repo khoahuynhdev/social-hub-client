@@ -1,6 +1,11 @@
 /* eslint-disable no-restricted-globals */
 const staticCacheName = 'our-first-cache';
-const PRECACHE_URLS = ['/asset.js','/asset.css'];
+const PRECACHE_URLS = [
+  './img/Background.jpg',
+  './img/huflit-event.jpg',
+  './img/logo.png',
+  './img/school.jpg',
+  './favicon.ico'];
 self.addEventListener('install', event => {
   console.log('attemping to install service worker and cache statis asset');
   event.waitUntil(
