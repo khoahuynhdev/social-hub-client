@@ -1,28 +1,24 @@
-import React, { Component } from 'react';
-
-class ActivityJoin extends Component {
-    render() {
-        return (
-            
-                <tr>
-        <td>1</td>
-        <td>Quẩy cùng các bạn ngày 20/11</td>
-        <td>20/11/2019</td>
-        <td>21/11/2019</td>
+import React, { PureComponent } from 'react';
+import { connect } from 'react-redux';
+import { setActivityDetail } from '../../../actions/activity';
+class ActivityJoin extends PureComponent {
+  render() {
+    const { A_NAME, STARTDATE, ENDDATE } = this.props.activity;    
+    return (
+      <tr>        
+        <td>{A_NAME}</td>
+        <td>{STARTDATE}</td>
+        <td>{ENDDATE}</td>
         <td>
-          <button data-toggle="modal"
-            data-target="#activityDetail" type="button" class="btn btn-sm btn-info">
+          <button data-toggle="modal" onClick={this.props.setActivityDetail.bind(null, this.props.activity)}
+            data-target="#activityDetail" type="button" className="btn btn-sm btn-info">
             Thông Tin
-          </button>{" "}
-          &nbsp;
-          <button type="button" class="btn btn-sm btn-danger">
-            X
-          </button>
+          </button>          
         </td>
       </tr>
-            
-        );
-    }
+
+    );
+  }
 }
 
-export default ActivityJoin;
+export default connect(null, { setActivityDetail })(ActivityJoin);

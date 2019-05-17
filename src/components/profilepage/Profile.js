@@ -28,7 +28,7 @@ class Profile extends Component {
     if (token && fingerprint) setHeaders(token, fingerprint)
   }
 
-  render() {
+  render() {    
     if (!this.props.auth.isAuthenticated) return <Redirect to='/' />
     const { match } = this.props;
     return (

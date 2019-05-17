@@ -20,10 +20,10 @@ class DetailProfile extends Component {
 				</div>
 				<div className="card-footer text-center ">
 					<div>
-						<Link className="btn btn-secondary" to={`${this.props.match.url}/information`}>Chỉnh Sửa Thông Tin</Link>
+						<Link className="btn btn-secondary" to={`./information`}>Chỉnh Sửa Thông Tin</Link>
 					</div>
 					<div>
-						<Link className="btn btn-myapp3 txt-white mt-2" to={`${this.props.match.url}/youractivity`}>Hoạt Động Của Bạn</Link>
+						<Link className="btn btn-myapp3 txt-white mt-2" to={`./youractivity`}>Hoạt Động Của Bạn</Link>
 					</div>
 				</div>
 			</div>

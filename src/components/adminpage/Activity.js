@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchActivitiesAdmin } from '../../actions/activity';
-import axios from 'axios';
+
 import ActivityItem from './ActivityItem'
 class Activity extends Component {
   constructor(props) {

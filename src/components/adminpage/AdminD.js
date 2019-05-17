@@ -3,11 +3,11 @@ import AdminProfile from "./AdminProfile";
 import ActivityBtn from "../featurebutton/ActivityBtn";
 import ShowingList from "../featurebutton/ShowingList";
 import StudentsList from "./StudentsList";
-import {getStudentList} from "../../action/adminauth/index";
+
 import Activity from "./Activity";
 import ActivityModel from '../model/ActivityDetail'
 import StudentDetail from "../model/StudentDetail";
-import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 class AdminD extends Component {
   render() {
     console.log(this.props.match.url)

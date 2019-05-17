@@ -48,8 +48,7 @@ class Dkhsinhvien extends Component {
                       type="radio"
                       id="inlineCheckbox2"
                       value="radio1"
-                      name="exampleRadios"
-                      checked
+                      name="exampleRadios"                      
                     />
                     <label className="form-check-label" htmlFor="inlineCheckbox2">
                       Đăng Ký Vào Hội Sinh Viên Trường

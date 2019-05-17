@@ -5,22 +5,35 @@ import * as types from './types'
 import { getError } from './auth';
 
 export const fetchActivities = (data) => {
-  return dispatch => {    
-    setTimeout(() => {
-      axios.get(`http://localhost:5000/api/activities/?skip=${data.skip}&limit=${data.limit}`)
-        .then(res => {
-          if (res.data) {
-            dispatch(getActivities(res.data.result));
-          }
-        })
-        .catch(error => {
-          dispatch(getError(error));
-        })
-    }, 1000);
+  return dispatch => {
+    axios.get(`http://localhost:5000/api/activities/?skip=${data.skip}&limit=${data.limit}`)
+      .then(res => {
+        if (res.data) {
+          dispatch(getError(null))
+          dispatch(getActivities(res.data.result));
+        }
+      })
+      .catch(error => {
+        dispatch(getError(error));
+      })
+  }
+}
+export const fetchJointActivities = (data) => {
+  return dispatch => {
+    axios.get(`http://localhost:5000/api/activities/joint?skip=${data.skip}&limit=${data.limit}`)
+      .then(res => {
+        if (res.data) {
+          dispatch(getError(null))
+          dispatch(getJointActivities(res.data.result));
+        }
+      })
+      .catch(error => {
+        dispatch(getError(error));
+      })
   }
 }
 export const fetchActivitiesAdmin = (data) => {
-  return dispatch => {    
+  return dispatch => {
     setTimeout(() => {
       axios.get(`http://localhost:5000/api/activities/adminactivity/?skip=${data.skip}&limit=${data.limit}`)
         .then(res => {
@@ -29,7 +42,6 @@ export const fetchActivitiesAdmin = (data) => {
           }
         })
         .catch(error => {
-          console.log(error);
           dispatch(getError(error));
         })
     }, 1000);
@@ -57,15 +69,21 @@ export const getActivities = (activities) => {
   }
 }
 
+export const getJointActivities = (jointActivities) => {
+  return {
+    type: types.GET_JOINT_ACTIVITY,
+    jointActivities
+  }
+}
+
 export const joinActivity = (data) => {
-	return dispatch => {
-		axios.post(`http://localhost:5000/api/activities/joinactivity`, data)
-		.then(res => {
-			dispatch(getError(null));
-			console.log(res.data);
-		})
-		.catch(error => {			
-			dispatch(getError(error));
-		})
-	}
+  return dispatch => {
+    axios.post(`http://localhost:5000/api/activities/joinactivity`, data)
+      .then(res => {
+        dispatch(getError(null));
+      })
+      .catch(error => {
+        dispatch(getError(error));
+      })
+  }
 }
