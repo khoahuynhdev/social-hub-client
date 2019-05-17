@@ -125,12 +125,12 @@ class loginpage extends Component {
         </div>
         <div className="col-md-4">
           <img
-            src="http://huflit.edu.vn/uploads/news/2016_10/14556502_1430786976934655_6410146407085835159_o.jpg"
+            src="./img/huflit-event.jpg"
             className="img-fluid rounded col-6 col-lg-12"
             alt="nothing"
           />
           <img
-            src="http://huflit.edu.vn/uploads/news/2016_10/14556502_1430786976934655_6410146407085835159_o.jpg"
+            src="./img/huflit-event.jpg"
             className="img-fluid rounded mt-1 col-6 col-lg-12"
             alt="nothing"
 
