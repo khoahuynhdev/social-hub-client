@@ -6,10 +6,11 @@ import jwtDecode from 'jwt-decode';
 import * as types from './types';
 import fingerprint from '../utils/fingerprint';
 import setHeaders from '../utils/setHeaders';
+import { resetActivities, resetJointActivities, setActivityDetail } from '../actions/activity';
 export const activate = (data) => {
   return (dispatch) => {
     axios.post('http://localhost:5000/api/users/activate', data)
-      .then(res => {        
+      .then(res => {
         if (res.status === 200 && res.data.msg === 'SUCCESS') {
           dispatch(getID(res.data.id))
         }
@@ -20,6 +21,11 @@ export const activate = (data) => {
   }
 }
 
+export const resetActivate = () => {
+  return dispatch => {
+    dispatch(getID(""))
+  }
+}
 
 export const login = (data) => {
   return (dispatch) => {
@@ -81,9 +87,14 @@ export const logout = () => {
       localStorage.removeItem('token')
       localStorage.removeItem('fingerprint')
       dispatch(setCurrentUser({}))
+      dispatch(setActivityDetail({}))
+      dispatch(resetActivities([]))
+      dispatch(resetJointActivities([]))
+      dispatch(setStudentCommunity(null))
+      dispatch(setUpdateInfo(null))
       setHeaders(null, null)
-    } catch (error) {
-      dispatch(getError(error))
+    } catch (err) {
+      dispatch(getError(_.get(err, 'response.data')))
     }
   }
 }
@@ -94,8 +105,8 @@ export const postUpdateInfo = (data) => {
       .then(result => {
         dispatch(setUpdateInfo(result.data))
       })
-      .catch(error => {
-        dispatch(getError(error))
+      .catch(err => {
+        dispatch(getError(_.get(err, 'response.data')))
       })
   }
 }
@@ -106,8 +117,8 @@ export const getUpdateInfo = () => {
       .then(result => {
         dispatch(setUpdateInfo(result.data))
       })
-      .catch(error => {
-        dispatch(getError(error))
+      .catch(err => {
+        dispatch(getError(_.get(err, 'response.data')))
       })
   }
 }
@@ -115,12 +126,11 @@ export const getUpdateInfo = () => {
 export const getStudentCommunity = () => {
   return dispatch => {
     axios.get(`http://localhost:5000/api/users/getJoinstdc`)
-    .then(result => {
-      console.log(result.data);
+    .then(result => {      
       dispatch(setStudentCommunity(result.data))
     })
-    .catch(error => {
-      dispatch(getError(error))
+    .catch(err => {
+      dispatch(getError(_.get(err, 'response.data')))
     })
   }
 }
@@ -132,8 +142,8 @@ export const joinStudentCommunity = (data) => {
         dispatch(getError(null))
         dispatch(setStudentCommunity(result.data))
       })
-      .catch(error => {
-        dispatch(getError(error))
+      .catch(err => {
+        dispatch(getError(_.get(err, 'response.data')))
       })
   }
 }

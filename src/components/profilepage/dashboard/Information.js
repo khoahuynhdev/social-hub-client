@@ -216,6 +216,7 @@ class Information extends Component {
                   appId="839052703122702"
                   autoLoad={false}
                   fields="name,email,picture"
+                  textButton="Kết nối facebook"
                   onClick={this.componentClicked}
                   callback={this.responseFacebook}
                   cssClass="btn btn-primary ml-1"

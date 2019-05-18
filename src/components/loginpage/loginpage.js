@@ -58,7 +58,7 @@ class loginpage extends Component {
             <div className="card-header bg-main text-light align-middle">
               <h4> Đăng Nhập</h4>
               <p>đăng nhập bằng mã số sinh viên trường</p>
-              <small>{this.props.errors ? `${this.props.errors.error}` : ``}</small>
+              <small className="text-danger">{this.props.errors && this.props.errors.error ? `${this.props.errors.error}` : ``}</small>
             </div>
             <div className="card-body">
               <form onSubmit={this.onSubmit}>
@@ -71,9 +71,8 @@ class loginpage extends Component {
                     type="text"
                     className="form-control"
                     name="ID"
-                    id="ID"
-                    placeholder="16DH123456"
                     onChange={this.onChange}
+                    autoComplete="off"
                   />
                 </div>
 
@@ -103,9 +102,9 @@ class loginpage extends Component {
                   <FacebookLogin 
                   appId="839052703122702"
                   autoLoad={false}
-                  fields="name,email,picture"                  
+                  fields="name,email,picture"
                   callback={this.responseFacebook}
-                  cssClass="btn btn-primary ml-1"
+                  cssClass="btn btn-primary btn-block"
                   icon="fa-facebook"/>                  
                   </div>
                   <div className="mt-2 col-12 col-md-6">                    
@@ -121,7 +120,6 @@ class loginpage extends Component {
                 </div>
               </form>
 
-
             </div>
           </div>
         </div>
@@ -129,13 +127,12 @@ class loginpage extends Component {
           <img
             src="./img/huflit-event.jpg"
             className="img-fluid rounded col-6 col-lg-12"
-            alt="nothing"
+            alt="huflit"
           />
           <img
             src="./img/huflit-event.jpg"
             className="img-fluid rounded mt-1 col-6 col-lg-12"
-            alt="nothing"
-
+            alt="huflit"
           />
         </div>
       </div>

@@ -35,8 +35,7 @@ class ActivePage extends Component {
       FullName: "",
       BirthDate: "",
       Faculty: "",
-      Major: "",
-      redirect: false
+      Major: "",      
     }
   }
 
@@ -52,15 +51,14 @@ class ActivePage extends Component {
     this.setState({redirect: true});
   }
 
-  render() {
-    const { redirect } = this.state;
+  render() {    
     const facultyElements = this.Faculties.map((item, index) => {
       return <option value={item} key={index}>{item}</option>
     });
     const majorsElements = this.Majors.map ((item, index) => {
       return <option value={item} key={index}>{item}</option>
     })
-    if (redirect) return <Redirect to='/updateInfo' />;
+    if (this.props.id) return <Redirect to='/updateInfo' />;
     return (      
       <div className="container app-content text-center">
         <div className="row form-vertical mt-10 ">
@@ -91,7 +89,7 @@ class ActivePage extends Component {
               </select>
             </div>
             <button type="submit" className="btn btn-primary mt-3">Submit</button>
-          </form>
+          </form>          
         </div>
       </div>
 
@@ -99,4 +97,10 @@ class ActivePage extends Component {
   }
 }
 
-export default  connect(null, { activate })(ActivePage);
+const mapStateToProps = state => {
+  return {
+    id: state.id
+  }
+}
+
+export default  connect(mapStateToProps, { activate })(ActivePage);

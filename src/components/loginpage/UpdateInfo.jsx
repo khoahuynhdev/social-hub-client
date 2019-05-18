@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
 import { connect } from 'react-redux';
+import { resetActivate } from '../../actions/auth';
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 class UpdateInfo extends Component {
@@ -17,6 +18,10 @@ class UpdateInfo extends Component {
       redirect: false,
       errors: {}
     }
+  }
+
+  componentDidMount() {
+    this.props.resetActivate();
   }
 
   onChange = event => {
@@ -155,8 +160,6 @@ class UpdateInfo extends Component {
               <div className="text-center">
                 <input
                   className="btn btn-myapp3"
-                  name="btnGui"
-                  id="btnGui"
                   type="submit"
                   value="Cập nhật thông tin"
                 />
@@ -177,4 +180,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, null)(UpdateInfo);
+export default connect(mapStateToProps, { resetActivate })(UpdateInfo);

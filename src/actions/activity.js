@@ -83,9 +83,23 @@ export const getActivities = (activities) => {
   }
 }
 
+export const resetActivities = (activities) => {
+  return {
+    type: types.RESET_ACTIVITIES,
+    activities
+  }
+}
+
 export const getJointActivities = (jointActivities) => {
   return {
     type: types.GET_JOINT_ACTIVITY,
+    jointActivities
+  }
+}
+
+export const resetJointActivities = (jointActivities) => {
+  return {
+    type: types.RESET_JOINT_ACTIVITIES,
     jointActivities
   }
 }

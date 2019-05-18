@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import DetailProfile from './DetailProfile'
 import MainDashB from "./dashboard/MainDashB";
-import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
+import { Route, Switch, withRouter, Redirect, Link } from 'react-router-dom';
 import NotificationDashB from "./dashboard/NotificationDashB";
 import SearchDashB from "./dashboard/SearchDashB";
 import Information from "./dashboard/Information";
@@ -48,9 +48,10 @@ class Profile extends Component {
           ></img>
           <hr></hr>
         </div>
-        <div className="col-md-3  d-none d-sm-block">
-          <DetailProfile match={match} />
+        <div className="col-lg-4 col-sm-12">
+          <DetailProfile match={match} />  
           <div>
+          <Link className="btn btn-myapp3 btn-block txt-white mt-2" to={`./youractivity`}>Hoạt Động Của Bạn</Link>
             <button
               className="btn btn-myapp2 btn-block px-auto"
               data-toggle="modal"
@@ -65,11 +66,11 @@ class Profile extends Component {
               data-toggle="modal"
               data-target="#dkHSV"
             >
-              Đăng Ký Tham Gia Hội Sinh Viên
+              Tham Gia Hội Sinh Viên
         </button>
           </div>
         </div>
-        <div className="col-md-9">
+        <div className="col-md-8">
           <Switch>
 
             <Route path={`${this.props.match.url}/noti`} exact component={NotificationDashB} />

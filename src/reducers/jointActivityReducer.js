@@ -7,6 +7,8 @@ const jointActivityReducer = (state = initialState, action) => {
     case types.GET_JOINT_ACTIVITY:
       const newJointActivities = state.concat(action.jointActivities)
       return newJointActivities
+    case types.RESET_JOINT_ACTIVITIES:
+      return action.jointActivities 
     default:
       break;
   }

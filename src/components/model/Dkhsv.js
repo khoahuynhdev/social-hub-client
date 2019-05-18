@@ -95,11 +95,11 @@ class Dkhsinhvien extends Component {
                     <input
                       className="form-check-input"
                       type="checkbox"
-                      id="inlineCheckbox1"
+                      id="cbDKHSV"
                       defaultChecked
                       required
                     />
-                    <label className="form-check-label" htmlFor="inlineCheckbox1">
+                    <label className="form-check-label" htmlFor="cbDKHSV">
                       Cung cấp thông tin cơ bản
                     </label>
                   </div>
