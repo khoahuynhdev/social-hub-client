@@ -2,8 +2,8 @@
 import axios from 'axios';
 /* App modules */
 import * as types from './types'
-import { getError } from './auth';
-
+import { getError, setCurrentUser } from './auth';
+import setHeaders from '../utils/setHeaders';
 export const fetchActivities = (data) => {
   return dispatch => {
     axios.get(`http://localhost:5000/api/activities/?skip=${data.skip}&limit=${data.limit}`)
@@ -14,7 +14,14 @@ export const fetchActivities = (data) => {
         }
       })
       .catch(error => {
-        dispatch(getError(error));
+        dispatch(getError(error));        
+        if (error.response && error.response.data && error.response.data.name === 'TokenExpiredError') {
+          console.log('token expired');
+          dispatch(setCurrentUser({}))
+          localStorage.removeItem('token')
+          localStorage.removeItem('fingerprint')
+          setHeaders(null, null)
+        }
       })
   }
 }
@@ -29,6 +36,13 @@ export const fetchJointActivities = (data) => {
       })
       .catch(error => {
         dispatch(getError(error));
+        if (error.response && error.response.data && error.response.data.name === 'TokenExpiredError') {
+          console.log('token expired');
+          dispatch(setCurrentUser({}))
+          localStorage.removeItem('token')
+          localStorage.removeItem('fingerprint')
+          setHeaders(null, null)
+        }
       })
   }
 }

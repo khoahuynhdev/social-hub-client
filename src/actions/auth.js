@@ -57,7 +57,7 @@ export const loginFB = (data) => {
         dispatch(getError(null));
         
         const token = res.data.token;
-        console.log(token);
+        
         localStorage.setItem('token', token);
         localStorage.setItem('fingerprint', fp);
         

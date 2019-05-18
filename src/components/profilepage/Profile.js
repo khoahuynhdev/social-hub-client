@@ -18,18 +18,26 @@ class Profile extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      
+
     }
   }
 
   componentDidMount() {
-    const token = localStorage.getItem('token');
-    const fingerprint = localStorage.getItem('fingerprint')
-    if (token && fingerprint) setHeaders(token, fingerprint)
+    try {
+      const token = localStorage.getItem('token');
+      const fingerprint = localStorage.getItem('fingerprint')
+      if (token && fingerprint) setHeaders(token, fingerprint)
+    } catch (error) {
+      localStorage.removeItem('token')
+      localStorage.removeItem('fingerprint')
+      setHeaders(null, null)
+    }
   }
 
-  render() {    
-    if (!this.props.auth.isAuthenticated) return <Redirect to='/' />
+  render() {
+    if (!this.props.auth.isAuthenticated) {
+      return <Redirect to='/' />
+    }
     const { match } = this.props;
     return (
       <div className="row">
@@ -65,7 +73,7 @@ class Profile extends Component {
           <Switch>
 
             <Route path={`${this.props.match.url}/noti`} exact component={NotificationDashB} />
-            <Route path={`${this.props.match.url}/search/:name`} exact render={({ match, history }) => <SearchDashB match={match} />} />
+            <Route path={`${this.props.match.url}/search/:name`} exact render={({ match, history }) => <SearchDashB match={match} history={history} />} />
             <Route path={`${this.props.match.url}/information`} exact render={({ match, history }) => <Information match={match} history={history} />} />
             <Route path={`${this.props.match.url}/changepassword`} exact component={ChangePassword} />
             <Route path={`${this.props.match.url}/youractivity`} exact component={ActivityJoinList} />

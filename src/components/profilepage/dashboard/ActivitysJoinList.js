@@ -3,6 +3,7 @@ import ActivityJoin from './ActivityJoin';
 import { connect } from 'react-redux';
 import { fetchJointActivities } from '../../../actions/activity';
 import InfiniteScroll from "react-infinite-scroll-component";
+import axios from 'axios';
 class ActivityJoinList extends Component {
 	constructor(props) {
 		super(props);
@@ -14,6 +15,13 @@ class ActivityJoinList extends Component {
 		}
 	}
 	componentDidMount() {
+		axios.get(`http://localhost:5000/api/activities/joint/count`)
+			.then(result => {
+				this.setState({ activitiesCount: result.data.activities })
+			})
+			.catch(error => {
+				this.setState({ activitiesCount: 30 })
+			})
 		this.props.fetchJointActivities({ skip: 0, limit: 10 })
 	}
 	fetchMoreData = () => {

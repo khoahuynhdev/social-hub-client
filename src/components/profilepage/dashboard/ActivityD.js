@@ -29,12 +29,12 @@ class ActivityD extends PureComponent {
     this.props.setActivityDetail(this.props.activity)
   }
   render() {
-    const { A_NAME } = this.props.activity;
+    const { A_NAME, CREATE_DATE } = this.props.activity;
     return (
       <div className="card mt-2">
         <div className="card-header">
           <h4>{A_NAME}</h4>
-          <p>10 phút trước</p>
+          <p>{CREATE_DATE}</p>
           <img src="./img/test-banner.jpg" className="img-fluid" alt="englishtest" />
         </div>
         <div className="card-body d-flex justify-content-end">

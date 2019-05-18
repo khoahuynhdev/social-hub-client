@@ -27,7 +27,7 @@ class Navbar extends Component {
   }  
 
 
-  render() {
+  render() {    
     return (
       <div>
         <nav className="navbar navbar-expand navbar-light fixed-top">

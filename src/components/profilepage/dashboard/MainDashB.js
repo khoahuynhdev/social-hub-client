@@ -16,11 +16,13 @@ class MainDashB extends Component {
 	}
 
 	componentDidMount() {
-		axios.get(`http://localhost:5000/api/activities/all`)
+		axios.get(`http://localhost:5000/api/activities/count`)
 			.then(result => {
 				this.setState({ activitiesCount: result.data.activities })
 			})
-			.catch(error => console.log(error))
+			.catch(error => {
+				this.setState({ activitiesCount: 30 })
+			})
 		this.props.fetchActivities({ skip: 0, limit: 10 });
 	}
 
@@ -33,7 +35,7 @@ class MainDashB extends Component {
 
 	}
 
-	render() {
+	render() {		
 		return (
 			<div className="card mt-2">
 				<div className="card-header">
@@ -93,6 +95,7 @@ class MainDashB extends Component {
 
 const mapStateToProps = (state) => {
 	return {
+		auth: state.auth,
 		activities: state.activities,
 		errors: state.errors
 	}
