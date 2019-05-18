@@ -15,7 +15,7 @@ class ActivityJoinList extends Component {
 		}
 	}
 	componentDidMount() {
-		axios.get(`http://localhost:5000/api/activities/joint/count`)
+		axios.get(`https://server-socialhub.herokuapp.com/api/activities/joint/count`)
 			.then(result => {
 				this.setState({ activitiesCount: result.data.activities })
 			})

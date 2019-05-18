@@ -47,7 +47,7 @@ class UpdateInfo extends Component {
     if (valid) {
       const { password, email, address, phone } = this.state
       const id = this.props.id;
-      axios.post('http://localhost:5000/api/users/updateInfo', {
+      axios.post('https://server-socialhub.herokuapp.com/api/users/updateInfo', {
         password, phone, email, address, id
       })
       .then(res => {
