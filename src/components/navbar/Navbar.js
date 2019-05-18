@@ -35,7 +35,7 @@ class Navbar extends Component {
           <div className="container">
             <Link className="navbar-brand mr-auto  " to="/">
               <img
-                src="img/logo.png"
+                src="img/SocialHub-128.png"
                 className="logo"
                 alt="nothing"
               />

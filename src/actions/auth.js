@@ -112,6 +112,32 @@ export const getUpdateInfo = () => {
   }
 }
 
+export const getStudentCommunity = () => {
+  return dispatch => {
+    axios.get(`http://localhost:5000/api/users/getJoinstdc`)
+    .then(result => {
+      console.log(result.data);
+      dispatch(setStudentCommunity(result.data))
+    })
+    .catch(error => {
+      dispatch(getError(error))
+    })
+  }
+}
+
+export const joinStudentCommunity = (data) => {
+  return dispatch => {
+    axios.post(`http://localhost:5000/api/users/joinstdc`, data)
+      .then(result => {
+        dispatch(getError(null))
+        dispatch(setStudentCommunity(result.data))
+      })
+      .catch(error => {
+        dispatch(getError(error))
+      })
+  }
+}
+
 export const getID = (id) => {
   return {
     type: types.GET_ID,
@@ -137,5 +163,12 @@ export const setCurrentUser = (profile) => {
   return {
     type: types.SET_CURRENT_USER,
     profile: profile
+  }
+}
+
+export const setStudentCommunity = (data) => {
+  return {
+    type: types.GET_STUDENT_COMMUNITY,
+    payload: data
   }
 }

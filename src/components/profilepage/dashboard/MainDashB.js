@@ -39,7 +39,7 @@ class MainDashB extends Component {
 		return (
 			<div className="card mt-2">
 				<div className="card-header">
-					<h4>Hoạt Động</h4>
+					<h4>HOẠT ĐỘNG</h4>
 
 					<div className="justify-content-start">
 						<form className="form-inline">

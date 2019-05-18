@@ -1,6 +1,36 @@
 import React, { Component } from 'react';
-
+import { connect } from 'react-redux';
+import { getStudentCommunity, joinStudentCommunity } from '../../actions/auth';
 class Dkhsinhvien extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      joinYC: null,
+      joinCP: null,
+      title: ""
+    }
+  }
+
+  onChange = event => {
+    this.setState({
+      [event.target.name]: event.target.value
+    })
+  }
+
+  componentDidMount() {
+    this.props.getStudentCommunity();
+  }
+
+  onSubmit = (event) => {
+    event.preventDefault();
+    const data = {
+      joinYC: this.state.joinYC,
+      joinCP: this.state.joinCP,
+      title: this.state.title
+    }
+    this.props.joinStudentCommunity(data);
+  }
+
   render() {
     return (
       <div
@@ -11,93 +41,103 @@ class Dkhsinhvien extends Component {
         aria-labelledby="modelTitleId"
         aria-hidden="true"
       >
-        <div className="modal-dialog" role="document">
-          <div className="modal-content text-center">
-            <div className="modal-header">
-              <h5 className="modal-title ">Đăng Ký Vào Hội Sinh Viên</h5>
-              <button
-                type="button"
-                className="close"
-                data-dismiss="modal"
-                aria-label="Close"
-              >
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div className="modal-body">
-              <form>
-                <div className="card">
+        <form onSubmit={this.onSubmit}>
+          <div className="modal-dialog" role="document">
+            <div className="modal-content text-center">
+              <div className="modal-header">
+                <h5 className="modal-title ">Đăng Ký Vào Hội Sinh Viên</h5>
+              </div>
+              <div className="modal-body">
+                {!this.props.studentCommunity ? <div className="card">
                   <div className="card-header">Thông Tin Cơ Bản</div>
+
+                  <div className="form-group m-3">
+                    <label htmlFor="joinYC">
+                      Ngày vào Đoàn (nếu có)
+                    </label>
+                    <input
+                      className="form-control"
+                      type="date"
+                      name="joinYC"
+                      id="joinYC"
+                      onChange={this.onChange}
+                    />
+                  </div>
+
+                  <div className="form-group m-3">
+                    <label htmlFor="joinCP">
+                      Ngày vào Đảng (nếu có)
+                    </label>
+                    <input
+                      className="form-control"
+                      type="date"
+                      name="joinCP"
+                      id="joinCP"
+                      onChange={this.onChange}
+                    />
+                  </div>
+
+                  <div className="form-group m-3">
+                    <label htmlFor="title">
+                      Chức vụ (nếu có)
+                    </label>
+                    <input
+                      className="form-control"
+                      type="text"
+                      name="title"
+                      id="title"
+                      autoComplete="off"
+                      onChange={this.onChange}
+                    />
+                  </div>
+
                   <div className="form-check m-3">
                     <input
                       className="form-check-input"
                       type="checkbox"
                       id="inlineCheckbox1"
-                      value="option1"
+                      defaultChecked
+                      required
                     />
                     <label className="form-check-label" htmlFor="inlineCheckbox1">
-                      Đồng ý cung cấp thông tin cơ bản cho việc Đăng Ký Hội Sinh Viên
-                        </label>
+                      Cung cấp thông tin cơ bản
+                    </label>
                   </div>
-                </div>
-                <div className="card">
-                  <div className="card-header">Chuyển Sinh Hoạt Đoàn</div>
-                  <div className="form-check m-3">
-                    <input
-                      className="form-check-input"
-                      type="radio"
-                      id="inlineCheckbox2"
-                      value="radio1"
-                      name="exampleRadios"                      
-                    />
-                    <label className="form-check-label" htmlFor="inlineCheckbox2">
-                      Đăng Ký Vào Hội Sinh Viên Trường
-                        </label>
-                  </div>
-                  <div className="form-check m-3">
-                    <input
-                      className="form-check-input"
-                      type="radio"
-                      id="inlineCheckbox3"
-                      value="radio2"
-                      name="exampleRadios"
-                    />
-                    <label className="form-check-label" htmlFor="inlineCheckbox3">
-                      Đăng Ký Vào Hội Sinh Viên Khoa
-                        </label>
-                  </div>
-                </div>
 
-              </form>
-            </div>
-            <div className="form-check m-3">
-              <input
-                className="form-check-input"
-                type="checkbox"
-                id="inlineCheckbox8"
-                value="option5"
-              />
-              <label className="form-check-label" htmlFor="inlineCheckbox8">
-                Bạn đã đọc kỹ điều lệ tham gia hoạt động đoàn và đồng ý
-                        </label>
-            </div>
-            <div className="modal-footer">
-              <button
-                type="button"
-                className="btn btn-myapp"
+                </div>
+                  : <div className="card">
+                    <div className="card-header">Trạng thái</div>
+                    <label className="text-info">
+                      {this.props.studentCommunity.STATE}
+                    </label>
+                  </div>
+                }
 
-              >
-                Đăng Ký
-                  </button>
-              <button type="button" className="btn btn-secondary" data-dismiss="modal">
-                Hủy Bỏ
-                  </button>
+
+              </div>
+              <div className="modal-footer">
+                {!this.props.studentCommunity ?
+                <button
+                  className="btn btn-myapp">
+                  Đăng Ký
+              </button> 
+              : null}
+                <button type="button" className="btn btn-secondary" data-dismiss="modal">
+                  Hủy Bỏ
+              </button>
+              </div>
             </div>
           </div>
-        </div>
+        </form>
       </div>
     );
   }
 }
 
-export default Dkhsinhvien;
+const mapStateToProps = state => {
+  return {
+    studentCommunity: state.studentCommunity
+  }
+}
+
+export default connect(mapStateToProps, { getStudentCommunity, joinStudentCommunity })(Dkhsinhvien);

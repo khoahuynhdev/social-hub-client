@@ -9,6 +9,7 @@ import update from './updateReducer';
 import studentDetail from './studentDetail'
 import isAddNewActivity from './isAddNewActivity'
 import jointActivities from './jointActivityReducer'
+import studentCommunity from './studentCommunityReducer'
 const root = combineReducers({
   errors,
   auth,
@@ -19,7 +20,8 @@ const root = combineReducers({
   update,
   studentDetail,
   isAddNewActivity,
-  jointActivities
+  jointActivities,
+  studentCommunity
 })
 
 export default root;
