@@ -92,6 +92,8 @@ export const logout = () => {
       dispatch(resetJointActivities([]))
       dispatch(setStudentCommunity(null))
       dispatch(setUpdateInfo(null))
+      dispatch(getError(null))
+      dispatch(getJoinYC(null))
       setHeaders(null, null)
     } catch (err) {
       dispatch(getError(_.get(err, 'response.data')))
@@ -111,11 +113,12 @@ export const postUpdateInfo = (data) => {
   }
 }
 
-export const getUpdateInfo = () => {
+export const getUpdateInfo = (cb) => {
   return dispatch => {
     axios.get(`http://localhost:5000/api/users/update`)
       .then(result => {
         dispatch(setUpdateInfo(result.data))
+        cb()
       })
       .catch(err => {
         dispatch(getError(_.get(err, 'response.data')))
@@ -141,6 +144,32 @@ export const joinStudentCommunity = (data) => {
       .then(result => {
         dispatch(getError(null))
         dispatch(setStudentCommunity(result.data))
+      })
+      .catch(err => {
+        dispatch(getError(_.get(err, 'response.data')))
+      })
+  }
+}
+
+export const getJoinYC = () => {
+  return dispatch => {
+    axios.get(`http://localhost:5000/api/users/getJoinyc`)
+    .then(result => {
+      dispatch(getError(null))
+      dispatch(setJoinYC(result.data))
+    })
+    .catch(err => {
+      dispatch(getError(_.get(err, 'response.data')))
+    })
+  }
+}
+
+export const joinYC = (data) => {
+  return dispatch => {
+    axios.post(`http://localhost:5000/api/users/joinyc`)
+      .then(result => {
+        dispatch(getError(null))
+        dispatch(setJoinYC(result.data))
       })
       .catch(err => {
         dispatch(getError(_.get(err, 'response.data')))
@@ -179,6 +208,13 @@ export const setCurrentUser = (profile) => {
 export const setStudentCommunity = (data) => {
   return {
     type: types.GET_STUDENT_COMMUNITY,
+    payload: data
+  }
+}
+
+export const setJoinYC = (data) => {
+  return {
+    type: types.GET_JOINYC,
     payload: data
   }
 }

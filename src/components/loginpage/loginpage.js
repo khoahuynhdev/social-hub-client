@@ -73,6 +73,7 @@ class loginpage extends Component {
                     name="ID"
                     onChange={this.onChange}
                     autoComplete="off"
+                    placeholder="16DH100000"
                   />
                 </div>
 

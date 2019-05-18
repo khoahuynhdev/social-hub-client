@@ -17,9 +17,13 @@ class Information extends Component {
   }
 
   componentDidMount() {
-    this.props.getUpdateInfo();
-    const { address, phone, email } = this.props.update;
-    this.setState({ address, phone, email })
+    this.props.getUpdateInfo(() => {
+      if (this.props.update) {
+        const { address, phone, email } = this.props.update;
+        this.setState({ address, phone, email })
+      }
+    });
+    
   }
   componentClicked = () => {
     
@@ -111,7 +115,7 @@ class Information extends Component {
                       name="phone"
                       className="form-control"
                       type="text"
-                      defaultValue={this.props.update.phone}
+                      defaultValue={this.props.update && this.props.update.phone ? this.props.update.phone : null}
                       onChange={this.onChange}
                     />
                   </div>
@@ -123,7 +127,7 @@ class Information extends Component {
                       name="email"
                       className="form-control"
                       type="email"
-                      defaultValue={this.props.update.email}
+                      defaultValue={this.props.update && this.props.update.email ? this.props.update.email : null}
                       onChange={this.onChange}
                     />
                   </div>
@@ -135,7 +139,7 @@ class Information extends Component {
                       name="address"
                       className="form-control"
                       type="text"
-                      defaultValue={this.props.update.address}
+                      defaultValue={this.props.update && this.props.update.address ? this.props.update.address : null}
                       onChange={this.onChange}
                     />
                   </div>
