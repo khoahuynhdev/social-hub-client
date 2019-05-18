@@ -21,6 +21,7 @@ class UpdateInfo extends Component {
   }
 
   componentDidMount() {
+    this.setState({id: this.props.id})
     this.props.resetActivate();
   }
 
@@ -45,8 +46,7 @@ class UpdateInfo extends Component {
     event.preventDefault();
     const { errors, valid } = this.validateInput(this.state);
     if (valid) {
-      const { password, email, address, phone } = this.state
-      const id = this.props.id;
+      const { password, email, address, phone, id } = this.state      
       axios.post('https://server-socialhub.herokuapp.com/api/users/updateInfo', {
         password, phone, email, address, id
       })
@@ -64,11 +64,6 @@ class UpdateInfo extends Component {
     } else {
       this.setState({ errors });
     }
-  }
-
-  componentWillReceiveProps = (nextProps) => {
-    console.log(nextProps);
-    this.setState({ id: nextProps.id })
   }
 
   render() {
