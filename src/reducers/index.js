@@ -12,6 +12,10 @@ import jointActivities from './jointActivityReducer'
 import studentCommunity from './studentCommunityReducer'
 import joinYC from './joinYCReducer';
 import notis from './notiReducer';
+import studentDetail from './studentDetail';
+import isAddNewActivity from './isAddNewActivity';
+import activityEditing from './activityEditing';
+import studentListType from './studentListType';
 const root = combineReducers({
   errors,
   auth,
@@ -25,7 +29,10 @@ const root = combineReducers({
   jointActivities,
   studentCommunity,
   joinYC,
-  notis
+  notis,
+  activityEditing,
+  studentListType
+
 })
 
 export default root;

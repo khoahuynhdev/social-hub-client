@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
-import * as actions from '../../action/adminauth/index'
+import * as actions from '../../action/adminauth/index';
+
 class ActivityBtn extends Component {
   render() {
     return (
@@ -9,7 +10,7 @@ class ActivityBtn extends Component {
           <button
             className="btn btn-block btn-lg btn-myapp3 txt-white"
             type="button"
-            onClick={this.props.isAddNewActivity(false)}
+            onClick={()=>this.props.isAddNewActivity(true)}
             data-toggle="modal"
           data-target="#ActivityModel"
           >

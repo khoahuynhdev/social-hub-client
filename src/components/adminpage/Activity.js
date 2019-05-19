@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchActivitiesAdmin } from '../../actions/activity';
+import ActivityItem from './ActivityItem';
 
-import ActivityItem from './ActivityItem'
 class Activity extends Component {
   constructor(props) {
     super(props);
@@ -19,16 +19,14 @@ class Activity extends Component {
   }
 
   fetchMoreData = () => {
-    if (this.props.activities.length >= this.state.activitiesCount) {
-      return this.setState({ hasMore: false });
-    }
+
     this.props.fetchActivitiesAdmin({ skip: this.state.skip, limit: 10 })
     this.setState({ skip: this.state.skip + 10, items: this.props.activities })
 
   }
     render() {
         return (
-            <div class="card">
+            <div className="card">
             <div className="card-header">
         <h4 className="text-center mb-auto mt-auto">Danh Sách Các Hoạt Động Đã Tham Gia</h4>
         </div>
@@ -36,18 +34,18 @@ class Activity extends Component {
           <div className="col-6 col-sm-4 input-group">
             <input
               type="text"
-              class="form-control"
+              className="form-control"
               name=""
               id=""
               aria-describedby="helpId"
               placeholder=""
             />
-            <div class="input-group-append">
+            <div className="input-group-append">
               <button
                 className="btn btn-xs btn-myapp text-center"
                 id="triggerId"
               >
-                <i class="fas fa-search fa-xs" />
+                <i className="fas fa-search fa-xs" />
               </button>
             </div>
           </div>
@@ -63,7 +61,7 @@ class Activity extends Component {
                 </p>
               }
             >
-        <table class="table table-hover ml-auto mr-auto">
+        <table className="table table-hover ml-auto mr-auto">
           <thead>
             <tr>
               <th>Stt</th>
@@ -76,7 +74,7 @@ class Activity extends Component {
           </thead>
           <tbody>
           {this.props.activities.map((item, index) => {
-                return <ActivityItem activity={item} key={index} index={index} />
+                return <ActivityItem match={this.props.match} activity={item} key={index} index={index} />
               })}
           </tbody>
         </table>
@@ -90,4 +88,4 @@ const mapStateToProps = state => {
     activities: state.activities
   };
 };
-export default connect(mapStateToProps, { fetchActivitiesAdmin })(Activity) ;
+export default connect(mapStateToProps, { fetchActivitiesAdmin })(Activity) ; 

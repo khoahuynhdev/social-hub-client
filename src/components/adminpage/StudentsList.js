@@ -14,7 +14,7 @@ class StudentList extends Component {
     };
   }
   componentDidMount() {
-    this.props.getStudentList({ skip: 0, limit: 20 });
+      this.props.getStudentList({ skip: 0, limit: 20 });
   }
   fetchMoreData = () => {
     console.log("getITem")
@@ -22,8 +22,7 @@ class StudentList extends Component {
     this.setState({ skip: this.state.skip + 20, items: this.props.students });
   };
   render() {
-    console.log(this.props.students);
-    return (
+        return (
       <div className="mt-5">
         <h1 className="text-center mb-5">Danh Sách Các Sinh Viên</h1>
         <div className="row mb-3">
@@ -77,6 +76,7 @@ class StudentList extends Component {
           key={index}
           item={item}
           index={index}
+          types="STList"
         />
       )})}
 
@@ -91,10 +91,10 @@ class StudentList extends Component {
 }
 const mapStateToProps = state => {
   return {
-    students: state.studentList
+    students: state.studentList,
   };
 };
  export default connect(
   mapStateToProps,
-  { getStudentList }
+  { getStudentList}
 )(StudentList);

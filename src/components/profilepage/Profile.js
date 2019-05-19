@@ -39,6 +39,8 @@ class Profile extends Component {
       return <Redirect to='/' />
     }
     const { match } = this.props;
+    console.log(this.props.history)
+    console.log(this.props.match)
     return (
       <div className="row">
         <div className="col-12">

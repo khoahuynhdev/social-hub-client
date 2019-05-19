@@ -1,4 +1,4 @@
-const initialState = false;
+const initialState = true;
 
 const isAddNewActivity = (state = initialState, action) => {
 

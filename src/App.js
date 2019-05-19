@@ -4,8 +4,7 @@ import Navbar from './components/navbar/Navbar'
 import Loginpage from './components/loginpage/loginpage';
 import { Route, Switch,withRouter } from 'react-router-dom';
 import Profile from './components/profilepage/Profile';
-import Activity from './components/model/Activity';
-import Noti from './components/model/Noti';
+
 import NoMatch from './components/profilepage/NoMatch';
 import ActivePage from './components/loginpage/ActivePage';
 import Adminloginpage from './components/loginpage/Adminloginpage';
@@ -23,16 +22,12 @@ class App extends Component {
               <Route path="/adminlogin" exact component={Adminloginpage} />
               <Route path="/activate" exact component={ActivePage} />
               <Route path="/updateInfo" exact component={UpdateInfo} />
-              <Route path="/students/:user/" component={Profile} />} />
-                {/* <Route path="/:user/profile/:sub" render={({match, history}) => <Profile match={match} />} /> */}
+              <Route path="/admin/:admin" component={AdminD}/>
+              <Route path="/students/:user" component={Profile} />}
               <Route path="/active" exact component={ActivePage} />
-              <Route path="/admin/:admin/" component={AdminD}/>
-               {/* <Route path={`/user2/profile/noti`} exact component={NotificationDashB}/> */}
               <Route path="/" component={NoMatch} />
             </Switch>
 
-          <Activity />
-          <Noti />
         </div>
       </div>
     );
