@@ -38,7 +38,7 @@ class Information extends Component {
       const fingerprint = localStorage.getItem('fingerprint');
       if (token && fingerprint) {
         setHeaders(token, fingerprint);
-        axios.post(`https://server-socialhub.herokuapp.com/api/users/updatefb`, data)
+        axios.post(`http://localhost:5000/api/users/updatefb`, data)
           .then(result => {
             console.log(result.data);
           })

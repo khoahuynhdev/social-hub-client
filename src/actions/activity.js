@@ -6,7 +6,7 @@ import { getError, setCurrentUser } from './auth';
 import setHeaders from '../utils/setHeaders';
 export const fetchActivities = (data) => {
   return dispatch => {
-    axios.get(`https://server-socialhub.herokuapp.com/api/activities/?skip=${data.skip}&limit=${data.limit}`)
+    axios.get(`http://localhost:5000/api/activities/?skip=${data.skip}&limit=${data.limit}`)
       .then(res => {
         if (res.data) {
           dispatch(getError(null))
@@ -27,7 +27,7 @@ export const fetchActivities = (data) => {
 }
 export const fetchJointActivities = (data) => {
   return dispatch => {
-    axios.get(`https://server-socialhub.herokuapp.com/api/activities/joint?skip=${data.skip}&limit=${data.limit}`)
+    axios.get(`http://localhost:5000/api/activities/joint?skip=${data.skip}&limit=${data.limit}`)
       .then(res => {
         if (res.data) {
           dispatch(getError(null))
@@ -106,7 +106,7 @@ export const resetJointActivities = (jointActivities) => {
 
 export const joinActivity = (data) => {
   return dispatch => {
-    axios.post(`https://server-socialhub.herokuapp.com/api/activities/joinactivity`, data)
+    axios.post(`http://localhost:5000/api/activities/joinactivity`, data)
       .then(res => {
         dispatch(getError(null));
       })

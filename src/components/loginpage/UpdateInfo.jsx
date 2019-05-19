@@ -47,7 +47,7 @@ class UpdateInfo extends Component {
     const { errors, valid } = this.validateInput(this.state);
     if (valid) {
       const { password, email, address, phone, id } = this.state      
-      axios.post('https://server-socialhub.herokuapp.com/api/users/updateInfo', {
+      axios.post('http://localhost:5000/api/users/updateInfo', {
         password, phone, email, address, id
       })
       .then(res => {

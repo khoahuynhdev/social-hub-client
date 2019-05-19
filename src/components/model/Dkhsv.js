@@ -123,7 +123,7 @@ class Dkhsinhvien extends Component {
               </button> 
               : null}
                 <button type="button" className="btn btn-secondary" data-dismiss="modal">
-                  Hủy Bỏ
+                  Thoát
               </button>
               </div>
             </div>

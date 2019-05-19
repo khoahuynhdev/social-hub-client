@@ -9,7 +9,7 @@ import setHeaders from '../utils/setHeaders';
 import { resetActivities, resetJointActivities, setActivityDetail } from '../actions/activity';
 export const activate = (data) => {
   return (dispatch) => {
-    axios.post('https://server-socialhub.herokuapp.com/api/users/activate', data)
+    axios.post('http://localhost:5000/api/users/activate', data)
       .then(res => {
         if (res.status === 200 && res.data.msg === 'SUCCESS') {
           dispatch(getID(res.data.id))
@@ -30,7 +30,7 @@ export const resetActivate = () => {
 export const login = (data) => {
   return (dispatch) => {
     fingerprint(fp => {    
-      axios.post(`https://server-socialhub.herokuapp.com/api/users/login`, {...data, fingerprint:fp})
+      axios.post(`http://localhost:5000/api/users/login`, {...data, fingerprint:fp})
       .then(res => {
         // change state for no errors
         dispatch(getError(null));
@@ -57,7 +57,7 @@ export const login = (data) => {
 export const loginFB = (data) => {
   return dispatch => {
     fingerprint(fp => {    
-      axios.post(`https://server-socialhub.herokuapp.com/api/users/loginfb`, {...data, fingerprint: fp})
+      axios.post(`http://localhost:5000/api/users/loginfb`, {...data, fingerprint: fp})
       .then(res => {
         // change state for no errors
         dispatch(getError(null));
@@ -103,7 +103,7 @@ export const logout = () => {
 
 export const postUpdateInfo = (data) => {
   return dispatch => {
-    axios.post(`https://server-socialhub.herokuapp.com/api/users/update`, data)
+    axios.post(`http://localhost:5000/api/users/update`, data)
       .then(result => {
         dispatch(setUpdateInfo(result.data))
       })
@@ -115,7 +115,7 @@ export const postUpdateInfo = (data) => {
 
 export const getUpdateInfo = (cb) => {
   return dispatch => {
-    axios.get(`https://server-socialhub.herokuapp.com/api/users/update`)
+    axios.get(`http://localhost:5000/api/users/update`)
       .then(result => {
         dispatch(setUpdateInfo(result.data))
         cb()
@@ -128,7 +128,7 @@ export const getUpdateInfo = (cb) => {
 
 export const getStudentCommunity = () => {
   return dispatch => {
-    axios.get(`https://server-socialhub.herokuapp.com/api/users/getJoinstdc`)
+    axios.get(`http://localhost:5000/api/users/getJoinstdc`)
     .then(result => {      
       dispatch(setStudentCommunity(result.data))
     })
@@ -140,7 +140,7 @@ export const getStudentCommunity = () => {
 
 export const joinStudentCommunity = (data) => {
   return dispatch => {
-    axios.post(`https://server-socialhub.herokuapp.com/api/users/joinstdc`, data)
+    axios.post(`http://localhost:5000/api/users/joinstdc`, data)
       .then(result => {
         dispatch(getError(null))
         dispatch(setStudentCommunity(result.data))
@@ -153,7 +153,7 @@ export const joinStudentCommunity = (data) => {
 
 export const getJoinYC = () => {
   return dispatch => {
-    axios.get(`https://server-socialhub.herokuapp.com/api/users/getJoinyc`)
+    axios.get(`http://localhost:5000/api/users/getJoinyc`)
     .then(result => {
       dispatch(getError(null))
       dispatch(setJoinYC(result.data))
@@ -166,7 +166,7 @@ export const getJoinYC = () => {
 
 export const joinYC = (data) => {
   return dispatch => {
-    axios.post(`https://server-socialhub.herokuapp.com/api/users/joinyc`)
+    axios.post(`http://localhost:5000/api/users/joinyc`)
       .then(result => {
         dispatch(getError(null))
         dispatch(setJoinYC(result.data))

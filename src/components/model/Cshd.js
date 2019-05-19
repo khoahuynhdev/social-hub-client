@@ -55,7 +55,7 @@ class Cshdoan extends Component {
               <div className="modal-footer">
                 {!this.props.joinyc ? <button className="btn btn-myapp">Đăng Ký</button> : null}
                 <button type="button" className="btn btn-secondary" data-dismiss="modal">
-                  Hủy Bỏ
+                  Thoát
                 </button>
               </div>
             </div>
