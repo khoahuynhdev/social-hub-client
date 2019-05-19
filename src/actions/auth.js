@@ -6,7 +6,7 @@ import jwtDecode from 'jwt-decode';
 import * as types from './types';
 import fingerprint from '../utils/fingerprint';
 import setHeaders from '../utils/setHeaders';
-import { resetActivities, resetJointActivities, setActivityDetail } from '../actions/activity';
+import { resetActivities, resetJointActivities, setActivityDetail, resetNotis } from '../actions/activity';
 export const activate = (data) => {
   return (dispatch) => {
     axios.post('http://localhost:5000/api/users/activate', data)
@@ -89,6 +89,7 @@ export const logout = () => {
       dispatch(setCurrentUser({}))
       dispatch(setActivityDetail({}))
       dispatch(resetActivities([]))
+      dispatch(resetNotis([]))
       dispatch(resetJointActivities([]))
       dispatch(setStudentCommunity(null))
       dispatch(setUpdateInfo(null))

@@ -14,9 +14,8 @@ export const fetchActivities = (data) => {
         }
       })
       .catch(error => {
-        dispatch(getError(error));        
+        dispatch(getError(error));
         if (error.response && error.response.data && error.response.data.name === 'TokenExpiredError') {
-          console.log('token expired');
           dispatch(setCurrentUser({}))
           localStorage.removeItem('token')
           localStorage.removeItem('fingerprint')
@@ -25,6 +24,28 @@ export const fetchActivities = (data) => {
       })
   }
 }
+
+export const fetchNotis = (data) => {
+  return dispatch => {
+    axios.get(`http://localhost:5000/api/notis/?skip=${data.skip}&limit=${data.limit}`)
+      .then(res => {
+        if (res.data) {
+          dispatch(getError(null))
+          dispatch(getNotis(res.data.result));
+        }
+      })
+      .catch(error => {
+        dispatch(getError(error));
+        if (error.response && error.response.data && error.response.data.name === 'TokenExpiredError') {          
+          dispatch(setCurrentUser({}))
+          localStorage.removeItem('token')
+          localStorage.removeItem('fingerprint')
+          setHeaders(null, null)
+        }
+      })
+  }
+}
+
 export const fetchJointActivities = (data) => {
   return dispatch => {
     axios.get(`http://localhost:5000/api/activities/joint?skip=${data.skip}&limit=${data.limit}`)
@@ -37,7 +58,6 @@ export const fetchJointActivities = (data) => {
       .catch(error => {
         dispatch(getError(error));
         if (error.response && error.response.data && error.response.data.name === 'TokenExpiredError') {
-          console.log('token expired');
           dispatch(setCurrentUser({}))
           localStorage.removeItem('token')
           localStorage.removeItem('fingerprint')
@@ -90,6 +110,13 @@ export const resetActivities = (activities) => {
   }
 }
 
+export const resetNotis = (notis) => {
+  return {
+    type: types.RESET_NOTIS,
+    notis
+  }
+}
+
 export const getJointActivities = (jointActivities) => {
   return {
     type: types.GET_JOINT_ACTIVITY,
@@ -101,6 +128,13 @@ export const resetJointActivities = (jointActivities) => {
   return {
     type: types.RESET_JOINT_ACTIVITIES,
     jointActivities
+  }
+}
+
+export const getNotis = (notis) => {
+  return {
+    type: types.GET_NOTIS,
+    notis
   }
 }
 

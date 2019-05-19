@@ -1,20 +1,22 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 
-class NotiD extends Component {
-    render() {
-        return (
-            <div className="card mt-2">
-          <div className="card-header">
-          <h4>Thông báo nghỉ học 30/4 và 1/5</h4>
-          <p>10 phút trước</p>
-          <img src="https://wallstreetenglish.edu.vn/images/english-test/toeic/more-test-banner-vi.jpg" className="img-fluid" alt="englishtest" />
-          </div>
-          <div className="card-body d-flex justify-content-end">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-          </div>
-        </div>
-        );
-    }
+class NotiD extends PureComponent {
+	render() {
+		const { NM_NAME, CONTENT, CREATE_DATE, SENDER } = this.props.noti;
+		return (
+			<div className="card mt-2">
+				<div className="card-header">
+					<h4>{NM_NAME}</h4>
+					<h5>{SENDER}</h5>
+					<p>{CREATE_DATE}</p>
+					<img src="./img/school.jpg" className="img-fluid" alt="notis" />
+				</div>
+				<div className="card-body d-flex justify-content-end">
+					<p>{CONTENT}</p>					
+				</div>
+			</div>
+		);
+	}
 }
 
 export default NotiD;
