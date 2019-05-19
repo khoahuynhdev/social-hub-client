@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import {connect} from 'react-redux';
-
-import { Redirect } from 'react-router'
+import {Redirect} from 'react-router-dom';
 class Adminloginpage extends Component {
   constructor(props){
     super(props)  
@@ -24,7 +23,7 @@ onSubmit=(e)=>
 .post('http://localhost:5000/api/admins/login',this.state)
   .then(res=>{
     if(res.data.msg==='Login Success'){
-      localStorage.setItem("admintoken",res.data.token)
+      localStorage.setItem("admintoken",res.data.admintoken)
       this.setState(
         {
           isLoginyet:true
@@ -37,7 +36,7 @@ onSubmit=(e)=>
     render() {
       const {isLoginyet,username}=this.state
       if(isLoginyet)
-      return <Redirect to = {{ pathname: `admin/${username}` }} />;
+      return <Redirect to = { `/admin/${username}/` } />;
         return (
             <div className="row">
             <div className="col-md-12">
