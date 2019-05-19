@@ -7,8 +7,29 @@ class ActivityDetail extends Component {
     }
   }
 
+  loadImg = (type) => {
+    switch (type) {
+      case 1:        
+        return "./img/doantruong.jpg";
+      case 2:
+        return "./img/hoisv.jpg";
+      case 3:
+          return "./img/doankhoa.jpg";
+      case 4:
+          return "./img/hoisv.jpg";
+      case 5:
+          return "./img/sinhhoat.jpg";
+      case 6:
+          return "./img/tinhnguyen.jpg";
+      case 7:
+          return "./img/hoithao.jpg";        
+      default:
+        return "./img/school.jpg";
+    }
+  }
+
   render() {
-    const { A_NAME, CONTENT, STARTDATE, ENDDATE, AT_NAME, AC_POINT } = this.props.activity;
+    const { A_NAME, CONTENT, STARTDATE, ENDDATE, AT_NAME, AC_POINT, AT_ID } = this.props.activity;
     return (
       <div
         className="modal fade"
@@ -45,9 +66,9 @@ class ActivityDetail extends Component {
               </div>
               <hr></hr>
               <img
-                src="./img/huflit-event.jpg"
+                src={this.loadImg(AT_ID)}
                 className="img-fluid rounded w-75 mt-2"
-                alt="nothing"
+                alt="event"
               />
               <hr></hr>
               <div className="mt-2">

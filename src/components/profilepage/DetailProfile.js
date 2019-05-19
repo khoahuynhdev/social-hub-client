@@ -8,7 +8,7 @@ class DetailProfile extends Component {
 			<div className="card m-1 ">
 				<div className="card-header bg-main txt-white text-center">
 					<h4>Profile</h4>
-					<img src="img/holder.jpg" className="img-fluid w-50 rounded-circle" alt="avatar" />
+					<img src="./img/SocialHub-512.png" className="img-fluid w-50 rounded-circle" alt="avatar" />
 					<h6 className="mt-2">{FullName}</h6>
 
 				</div>
