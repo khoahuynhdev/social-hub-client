@@ -54,7 +54,7 @@ class Navbar extends Component {
                 <li className="nav-item">
                   <Link className="btn btn-none text-center" to="./information">
                     <i className="fas fa-user mr-1"></i>
-                    {this.props.auth.profile.FullName}
+                    {this.props.auth.profile.ID}
                   </Link>
                 </li>
                 <li className="nav-item">
