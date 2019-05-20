@@ -18,7 +18,7 @@ class Dkhsinhvien extends Component {
   }
 
   componentDidMount() {
-    if (!this.props.studentCommunity || !this.props.studentCommunity.ID) this.props.getStudentCommunity();
+    this.props.getStudentCommunity();
   }
 
   onSubmit = (event) => {

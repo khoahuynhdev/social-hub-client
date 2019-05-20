@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { setActivityDetail, joinActivity, removeActivity } from '../../../actions/activity';
-
+import moment from 'moment';
 class ActivityD extends PureComponent {
   
   loadImg = (type) => {
@@ -45,7 +45,7 @@ class ActivityD extends PureComponent {
       <div className="card mt-2">
         <div className="card-header">
           <h4>{A_NAME}</h4>
-          <p>{CREATE_DATE}</p>
+          <p>{moment(CREATE_DATE).startOf('days').fromNow()}</p>
           <img src={this.loadImg(AT_ID)} className="img-fluid" alt="event" />
         </div>
         <div className="card-body d-flex justify-content-end">

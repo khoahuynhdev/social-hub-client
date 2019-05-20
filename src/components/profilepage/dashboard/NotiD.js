@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-
+import moment from 'moment';
 class NotiD extends PureComponent {
 	render() {
 		const { NM_NAME, CONTENT, CREATE_DATE, SENDER } = this.props.noti;
@@ -8,7 +8,7 @@ class NotiD extends PureComponent {
 				<div className="card-header">
 					<h4>{NM_NAME}</h4>
 					<h5>{SENDER}</h5>
-					<p>{CREATE_DATE}</p>
+					<p>{moment(CREATE_DATE).fromNow()}</p>
 					<img src="./img/school.jpg" className="img-fluid" alt="notis" />
 				</div>
 				<div className="card-body d-flex justify-content-end">

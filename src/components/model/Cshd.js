@@ -4,7 +4,7 @@ import { getJoinYC, joinYC } from '../../actions/auth';
 class Cshdoan extends Component {
 
   componentDidMount() {
-    if (!this.props.joinyc || !this.props.joinyc.ID) this.props.getJoinYC();
+    this.props.getJoinYC();
   }
 
   onSubmit = (event) => {

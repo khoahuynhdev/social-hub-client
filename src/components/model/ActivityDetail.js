@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
+import moment from 'moment';
 class ActivityDetail extends Component {
   constructor(props) {
     super(props);
@@ -55,7 +56,7 @@ class ActivityDetail extends Component {
             <div className="model-body">
               <div className="mt-2">
                 <h4>Thời Gian Diễn Ra</h4>
-                <h6>{STARTDATE}:{ENDDATE}</h6>
+                <h6>{moment(STARTDATE).calendar()}:{moment(ENDDATE).calendar()}</h6>
               </div>
               <hr></hr>
               <div className="mt-2">
