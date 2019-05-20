@@ -18,13 +18,13 @@ class loginpage extends Component {
 
   responseFacebook = (response) => {
     if (response && response.id) {
-      this.props.loginFB({facebookID: response.id});
+      this.props.loginFB({ facebookID: response.id });
     } else {
       alert('đã có lỗi xảy ra hãy thử lại sau');
-    }    
+    }
   }
 
-  componentDidMount() {    
+  componentDidMount() {
     try {
       const token = localStorage.getItem('token');
       if (token) {
@@ -51,9 +51,9 @@ class loginpage extends Component {
   }
 
   render() {
-    if (this.props.auth.isAuthenticated) {      
+    if (this.props.auth.isAuthenticated) {
       return <Redirect to={`/students/${this.props.auth.profile.ID}/`} />
-    }    
+    }
     return (
       <div className="row">
         <div className="col-md-8">
@@ -61,7 +61,11 @@ class loginpage extends Component {
             <div className="card-header bg-main text-light align-middle">
               <h4> Đăng Nhập</h4>
               <p>đăng nhập bằng mã số sinh viên trường</p>
-              <small className="text-danger">{this.props.errors && this.props.errors.error ? `${this.props.errors.error}` : ``}</small>
+              <small className="text-danger">
+                <strong>
+                  {this.props.errors && this.props.errors.loginError ? `${this.props.errors.loginError}` : null}
+                </strong>
+              </small>
             </div>
             <div className="card-body">
               <form onSubmit={this.onSubmit}>
@@ -103,15 +107,15 @@ class loginpage extends Component {
                     </button>
                   </div>
                   <div className="mt-2 col-12 col-md-6">
-                  <FacebookLogin 
-                  appId="839052703122702"
-                  autoLoad={false}
-                  fields="name,email,picture"
-                  callback={this.responseFacebook}
-                  cssClass="btn btn-primary btn-block"
-                  icon="fa-facebook"/>                  
+                    <FacebookLogin
+                      appId="839052703122702"
+                      autoLoad={false}
+                      fields="name,email,picture"
+                      callback={this.responseFacebook}
+                      cssClass="btn btn-primary btn-block"
+                      icon="fa-facebook" />
                   </div>
-                  <div className="mt-2 col-12 col-md-6">                    
+                  <div className="mt-2 col-12 col-md-6">
                     <Link className="btn btn-myapp btn-block" to="/activate">Kích hoạt tài khoản</Link>
                   </div>
                   <div className="mt-2 col-12 col-md-6">
