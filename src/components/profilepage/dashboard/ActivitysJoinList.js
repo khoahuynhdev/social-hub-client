@@ -11,7 +11,7 @@ class ActivityJoinList extends Component {
 			hasMore: true,
 			skip: 10,
 			limit: 10,
-			activitiesCount: 30
+			activitiesCount: 10
 		}
 	}
 	componentDidMount() {
@@ -20,7 +20,7 @@ class ActivityJoinList extends Component {
 				this.setState({ activitiesCount: result.data.activities })
 			})
 			.catch(error => {
-				this.setState({ activitiesCount: 30 })
+				this.setState({ activitiesCount: 10 })
 			})
 		this.props.fetchJointActivities({ skip: 0, limit: 10 })
 	}

@@ -39,21 +39,18 @@ class Profile extends Component {
       return <Redirect to='/' />
     }
     const { match } = this.props;
-    console.log(this.props.history)
-    console.log(this.props.match)
     return (
       <div className="row">
         <div className="col-12">
           <img src="img/school.jpg"
             alt="none"
-            className="img-fluid rounded mb-3 border"
-          ></img>
+            className="img-fluid rounded mb-3 border" />
           <hr></hr>
         </div>
         <div className="col-lg-4 col-sm-12">
-          <DetailProfile match={match} />  
+          <DetailProfile match={match} />
           <div>
-          <Link className="btn btn-myapp3 btn-block txt-white mt-2" to={`./youractivity`}>Hoạt Động Của Bạn</Link>
+            <Link className="btn btn-myapp3 btn-block txt-white mt-2" to={`./youractivity`}>Hoạt Động Của Bạn</Link>
             <button
               className="btn btn-myapp2 btn-block px-auto"
               data-toggle="modal"

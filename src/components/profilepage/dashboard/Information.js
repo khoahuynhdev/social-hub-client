@@ -25,9 +25,6 @@ class Information extends Component {
     });
     
   }
-  componentClicked = () => {
-    
-  }
 
   responseFacebook = (response) => {
     console.log(response);
@@ -221,8 +218,7 @@ class Information extends Component {
                   appId="839052703122702"
                   autoLoad={false}
                   fields="name,email,picture"
-                  textButton="Kết nối facebook"
-                  onClick={this.componentClicked}
+                  textButton="Kết nối facebook"                  
                   callback={this.responseFacebook}
                   cssClass="btn btn-primary ml-1"
                   icon="fa-facebook"/>

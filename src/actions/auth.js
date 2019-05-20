@@ -92,8 +92,7 @@ export const logout = () => {
       dispatch(resetNotis([]))
       dispatch(resetJointActivities([]))
       dispatch(setStudentCommunity(null))
-      dispatch(setUpdateInfo(null))
-      dispatch(getError(null))
+      dispatch(setUpdateInfo(null))      
       dispatch(getJoinYC(null))
       setHeaders(null, null)
     } catch (err) {

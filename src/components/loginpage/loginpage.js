@@ -17,8 +17,11 @@ class loginpage extends Component {
   }
 
   responseFacebook = (response) => {
-
-    this.props.loginFB({facebookID: response.id});
+    if (response && response.id) {
+      this.props.loginFB({facebookID: response.id});
+    } else {
+      alert('đã có lỗi xảy ra hãy thử lại sau');
+    }    
   }
 
   componentDidMount() {    
@@ -79,7 +82,7 @@ class loginpage extends Component {
 
                 <div className="form-group">
                   <h6>
-                    <label>Mật Khẩu</label>{" "}
+                    <label>Mật Khẩu</label>
                   </h6>
                   <input
                     type="password"
