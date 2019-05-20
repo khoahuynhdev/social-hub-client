@@ -92,8 +92,8 @@ export const logout = () => {
       dispatch(resetNotis([]))
       dispatch(resetJointActivities([]))
       dispatch(setStudentCommunity(null))
-      dispatch(setUpdateInfo(null))      
-      dispatch(getJoinYC(null))
+      dispatch(setUpdateInfo(null))
+      dispatch(setJoinYC(null))
       setHeaders(null, null)
     } catch (err) {
       dispatch(getError(_.get(err, 'response.data')))
