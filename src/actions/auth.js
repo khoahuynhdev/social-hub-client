@@ -178,6 +178,18 @@ export const joinYC = (data) => {
   }
 }
 
+export const updateInfo = (data, callback) => {
+  axios.post('http://localhost:5000/api/users/updateInfo', data)
+      .then(res => {
+        if (res.status === 200 && res.data.msg === 'SUCCESS') {
+          callback()
+        }
+      })
+      .catch(err => {
+
+      })
+}
+
 export const resetError = () => {
   return dispatch => {
     dispatch(getError(null))

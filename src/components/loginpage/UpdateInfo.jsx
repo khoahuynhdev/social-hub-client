@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
 import { connect } from 'react-redux';
-import { resetActivate } from '../../actions/auth';
+import { resetActivate, updateInfo } from '../../actions/auth';
 import { Redirect } from 'react-router-dom';
-import axios from 'axios';
 class UpdateInfo extends Component {
 
   constructor(props) {
@@ -21,7 +20,7 @@ class UpdateInfo extends Component {
   }
 
   componentDidMount() {
-    this.setState({id: this.props.id})
+    this.setState({ id: this.props.id })
     this.props.resetActivate();
   }
 
@@ -46,20 +45,11 @@ class UpdateInfo extends Component {
     event.preventDefault();
     const { errors, valid } = this.validateInput(this.state);
     if (valid) {
-      const { password, email, address, phone, id } = this.state      
-      axios.post('http://localhost:5000/api/users/updateInfo', {
-        password, phone, email, address, id
-      })
-      .then(res => {
-        if (res.status === 200 && res.data.msg === 'SUCCESS') {
-          this.setState({
-            errors: errors,
-            redirect: true
-          })          
-        }
-      })
-      .catch(err => {
-        console.log(err);
+      updateInfo(this.state, () => {
+        this.setState({
+          errors: errors,
+          redirect: true
+        })
       })
     } else {
       this.setState({ errors });
@@ -79,13 +69,13 @@ class UpdateInfo extends Component {
                 <div className="form-row">
 
                   <div className="col-12">
-                    <label htmlFor="password">
+                    <label htmlFor="updatePassword">
                       <h6>Mật khẩu</h6>
                     </label>
                     <input
                       name="password"
                       className="form-control"
-                      id=""
+                      id="updatePassword"
                       type="password"
                       onChange={this.onChange}
                       required
@@ -94,13 +84,13 @@ class UpdateInfo extends Component {
                   </div>
 
                   <div className="col-12">
-                    <label htmlFor="password2">
+                    <label htmlFor="updatePassword2">
                       <h6>Nhập lại mật khẩu</h6>
                     </label>
                     <input
                       name="password2"
                       className="form-control"
-                      id=""
+                      id="updatePassword2"
                       type="password"
                       onChange={this.onChange}
                       required
@@ -109,13 +99,13 @@ class UpdateInfo extends Component {
                   </div>
 
                   <div className="col-12">
-                    <label htmlFor="email">
+                    <label htmlFor="updateEmail">
                       <h6>Email</h6>
                     </label>
                     <input
                       name="email"
                       className="form-control"
-                      id="email"
+                      id="updateEmail"
                       type="email"
                       onChange={this.onChange}
                       required
@@ -123,13 +113,13 @@ class UpdateInfo extends Component {
                   </div>
 
                   <div className="col-12">
-                    <label htmlFor="phone">
+                    <label htmlFor="updatePhone">
                       <h6>Phone</h6>
                     </label>
                     <input
                       name="phone"
+                      id="updatePhone"
                       className="form-control"
-                      id=""
                       type="text"
                       onChange={this.onChange}
                       required
@@ -137,13 +127,13 @@ class UpdateInfo extends Component {
                   </div>
 
                   <div className="col-12">
-                    <label htmlFor="address">
+                    <label htmlFor="updateAddress">
                       <h6>Address</h6>
                     </label>
                     <input
                       name="address"
+                      id="updateAddress"
                       className="form-control"
-                      id=""
                       type="text"
                       onChange={this.onChange}
                       required

@@ -7,10 +7,10 @@ class ActivePage extends Component {
     super(props);
     this.Faculties = [
       "Khoa",
-      "Du lịch - Khách sạn", 
-      "Công nghệ thông tin", 
-      "Kinh tế - Tài chính", 
-      "Bộ môn Luật", 
+      "Du lịch - Khách sạn",
+      "Công nghệ thông tin",
+      "Kinh tế - Tài chính",
+      "Bộ môn Luật",
       "Quản trị kinh doanh quốc tế",
       "Ngôn ngữ và Văn hóa phương Đông",
       "Quan hệ quốc tế",
@@ -29,13 +29,13 @@ class ActivePage extends Component {
       "Ngôn ngữ Trung Quốc",
       "Kinh doanh quốc tế",
       "Tài chính - Ngân hàng"
-    ]  
+    ]
     this.state = {
       ID: "",
       FullName: "",
       BirthDate: "",
       Faculty: "",
-      Major: "",      
+      Major: "",
     }
   }
 
@@ -48,29 +48,32 @@ class ActivePage extends Component {
   onSubmit = event => {
     event.preventDefault();
     this.props.activate(this.state)
-    this.setState({redirect: true});
+    this.setState({ redirect: true });
   }
 
-  render() {    
+  render() {
     const facultyElements = this.Faculties.map((item, index) => {
       return <option value={item} key={index}>{item}</option>
     });
-    const majorsElements = this.Majors.map ((item, index) => {
+    const majorsElements = this.Majors.map((item, index) => {
       return <option value={item} key={index}>{item}</option>
     })
     if (this.props.id) return <Redirect to='/updateInfo' />;
-    return (      
+    return (
       <div className="container app-content text-center">
-        <div className="row form-vertical mt-10 ">        
+        <div className="row form-vertical mt-10 ">
           <form onSubmit={this.onSubmit} className="ml-auto mr-auto mt-10">
-          <h4 className="text-danger">{this.props.errors && this.props.errors.validateRegisterError ? 'Sai thông tin tài khoản' : null}</h4>
+            <h4 className="text-danger">
+              {this.props.errors && this.props.errors.validateRegisterError ? 'Sai thông tin tài khoản'
+                : this.props.errors && this.props.errors.activeError ? this.props.errors.activeError : null}
+            </h4>
             <div className="form-group">
               <label htmlFor="ID">Mã số Sinh Viên</label>
-              <input onChange={this.onChange} type="text" className="form-control" name="ID" id="ID" placeholder="16DH110001" required />      
+              <input onChange={this.onChange} type="text" className="form-control" name="ID" id="ID" placeholder="16DH110001" required />
             </div>
             <div className="form-group">
               <label htmlFor="FullName">Họ Tên</label>
-              <input onChange={this.onChange} type="text" className="form-control" name="FullName" id="FullName" placeholder="Họ Tên"  required />              
+              <input onChange={this.onChange} type="text" className="form-control" name="FullName" id="FullName" placeholder="Họ Tên" required />
             </div>
             <div className="form-group">
               <label htmlFor="BirthDate">Ngày Sinh</label>
@@ -80,16 +83,16 @@ class ActivePage extends Component {
               <label htmlFor="Faculty">Khoa</label>
               <select onChange={this.onChange} className="form-control" name="Faculty" id="Faculty">
                 {facultyElements}
-              </select>              
+              </select>
             </div>
             <div className="form-group">
-              <label htmlFor="Major">Ngành</label>              
+              <label htmlFor="Major">Ngành</label>
               <select onChange={this.onChange} className="form-control" name="Major" id="Major">
                 {majorsElements}
               </select>
             </div>
             <button type="submit" className="btn btn-primary mt-3">Submit</button>
-          </form>          
+          </form>
         </div>
       </div>
 
@@ -104,4 +107,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default  connect(mapStateToProps, { activate })(ActivePage);
+export default connect(mapStateToProps, { activate })(ActivePage);
