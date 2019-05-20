@@ -61,16 +61,16 @@ class ActivePage extends Component {
     if (this.props.id) return <Redirect to='/updateInfo' />;
     return (      
       <div className="container app-content text-center">
-        <div className="row form-vertical mt-10 ">
+        <div className="row form-vertical mt-10 ">        
           <form onSubmit={this.onSubmit} className="ml-auto mr-auto mt-10">
+          <h4 className="text-danger">{this.props.errors && this.props.errors.validateRegisterError ? 'Sai thông tin tài khoản' : null}</h4>
             <div className="form-group">
               <label htmlFor="ID">Mã số Sinh Viên</label>
-              <input onChange={this.onChange} type="text" className="form-control" name="ID" id="ID" aria-describedby="IDHelp" placeholder="mã số sinh viên" required />
-              <small id="IDHelp" className="form-text text-muted">Mã số sinh viên do trường cấp</small>
+              <input onChange={this.onChange} type="text" className="form-control" name="ID" id="ID" placeholder="16DH110001" required />      
             </div>
             <div className="form-group">
               <label htmlFor="FullName">Họ Tên</label>
-              <input onChange={this.onChange} type="text" className="form-control" name="FullName" id="FullName" placeholder="Họ Tên"  required />
+              <input onChange={this.onChange} type="text" className="form-control" name="FullName" id="FullName" placeholder="Họ Tên"  required />              
             </div>
             <div className="form-group">
               <label htmlFor="BirthDate">Ngày Sinh</label>
@@ -99,7 +99,8 @@ class ActivePage extends Component {
 
 const mapStateToProps = state => {
   return {
-    id: state.id
+    id: state.id,
+    errors: state.errors
   }
 }
 

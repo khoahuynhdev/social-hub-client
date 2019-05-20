@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { login, loginFB } from '../../actions/auth';
+import { login, loginFB, resetError, setCurrentUser } from '../../actions/auth';
 import jwtDecode from 'jwt-decode';
-import { setCurrentUser } from '../../actions/auth';
 import { Redirect } from 'react-router-dom';
 import FacebookLogin from 'react-facebook-login';
 class loginpage extends Component {
@@ -62,9 +61,7 @@ class loginpage extends Component {
               <h4> Đăng Nhập</h4>
               <p>đăng nhập bằng mã số sinh viên trường</p>
               <small className="text-danger">
-                <strong>
-                  {this.props.errors && this.props.errors.loginError ? `${this.props.errors.loginError}` : null}
-                </strong>
+                {this.props.errors && this.props.errors.loginError ? `${this.props.errors.loginError}` : null}
               </small>
             </div>
             <div className="card-body">
@@ -81,6 +78,7 @@ class loginpage extends Component {
                     onChange={this.onChange}
                     autoComplete="off"
                     placeholder="16DH100000"
+                    required
                   />
                 </div>
 
@@ -94,6 +92,7 @@ class loginpage extends Component {
                     name="password"
                     id="password"
                     onChange={this.onChange}
+                    required
                   />
                 </div>
 
@@ -116,7 +115,7 @@ class loginpage extends Component {
                       icon="fa-facebook" />
                   </div>
                   <div className="mt-2 col-12 col-md-6">
-                    <Link className="btn btn-myapp btn-block" to="/activate">Kích hoạt tài khoản</Link>
+                    <Link className="btn btn-myapp btn-block" to="/activate" onClick={this.props.resetError}>Kích hoạt tài khoản</Link>
                   </div>
                   <div className="mt-2 col-12 col-md-6">
                     <input
@@ -155,4 +154,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { login, loginFB, setCurrentUser })(loginpage);
+export default connect(mapStateToProps, { login, loginFB, setCurrentUser, resetError })(loginpage);

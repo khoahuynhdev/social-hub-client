@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
-import { setCurrentUser, logout } from '../../actions/auth'
+import { setCurrentUser, logout, resetError } from '../../actions/auth'
 import { Link } from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
 class Navbar extends Component {
@@ -33,7 +33,7 @@ class Navbar extends Component {
         <nav className="navbar navbar-expand navbar-light fixed-top">
 
           <div className="container">
-            <Link className="navbar-brand mr-auto  " to="/">
+            <Link className="navbar-brand mr-auto  " to="/" onClick={this.props.resetError}>
               <img
                 src="img/SocialHub-128.png"
                 className="logo"
@@ -80,4 +80,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { setCurrentUser, logout })(Navbar);
+export default connect(mapStateToProps, { setCurrentUser, logout, resetError })(Navbar);
