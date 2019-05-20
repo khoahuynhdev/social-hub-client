@@ -11,7 +11,7 @@ class MainDashB extends Component {
 			hasMore: true,
 			skip: 10,
 			limit: 10,
-			activitiesCount: 30
+			activitiesCount: 0
 		}
 	}
 
@@ -21,7 +21,7 @@ class MainDashB extends Component {
 				this.setState({ activitiesCount: result.data.activities })
 			})
 			.catch(error => {
-				this.setState({ activitiesCount: 30 })
+				this.setState({ activitiesCount: 10 })
 			})
 		this.props.fetchActivities({ skip: 0, limit: 10 });
 	}

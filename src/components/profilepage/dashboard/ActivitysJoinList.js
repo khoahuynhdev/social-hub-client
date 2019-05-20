@@ -11,7 +11,7 @@ class ActivityJoinList extends Component {
 			hasMore: true,
 			skip: 10,
 			limit: 10,
-			activitiesCount: 10
+			activitiesCount: 0
 		}
 	}
 	componentDidMount() {
