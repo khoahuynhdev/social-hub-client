@@ -1,16 +1,9 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import { setActivityDetail, joinActivity } from '../../../actions/activity';
+import { setActivityDetail, joinActivity, removeActivity } from '../../../actions/activity';
 
 class ActivityD extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      joint: false,
-      once: false
-    }
-  }
-
+  
   loadImg = (type) => {
     switch (type) {
       case 1:        
@@ -32,10 +25,7 @@ class ActivityD extends PureComponent {
     }
   }
 
-  handleOnClick = () => {
-    if (this.state.once) {
-      return this.setState({joint: !this.state.joint})
-    }
+  handleOnClick = () => {    
     // call API
     const data = {
       id: this.props.auth.profile.ID,
@@ -43,7 +33,7 @@ class ActivityD extends PureComponent {
     }
     this.props.joinActivity(data)
     if (this.props.errors && this.props.errors.config) return;
-    this.setState({joint: !this.state.joint, once: true})
+    this.props.removeActivity(this.props.activity.A_ID)
   }
   
   viewDetail = () => {
@@ -62,7 +52,7 @@ class ActivityD extends PureComponent {
           <button className="btn btn-myapp m-1"
             data-toggle="modal"
             data-target="#activityDetail" onClick={this.viewDetail}>Xem Chi Tiết</button>
-          <button className="btn btn-myapp2 m-1" onClick={this.handleOnClick}>{this.state.joint ? "Huỷ": "Tham gia"}</button>
+          <button className="btn btn-myapp2 m-1" onClick={this.handleOnClick}>Tham gia</button>
         </div>
       </div>
     );
@@ -77,4 +67,4 @@ const mapStateToProps = (state) => {
 }
 
 
-export default connect(mapStateToProps, { setActivityDetail, joinActivity })(ActivityD);
+export default connect(mapStateToProps, { setActivityDetail, joinActivity, removeActivity })(ActivityD);

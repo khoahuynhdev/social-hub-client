@@ -138,6 +138,13 @@ export const getNotis = (notis) => {
   }
 }
 
+export const removeActivity = (id) => {
+  return {
+    type: types.REMOVE_ACTIVITIES,
+    id
+  }
+}
+
 export const joinActivity = (data) => {
   return dispatch => {
     axios.post(`http://localhost:5000/api/activities/joinactivity`, data)
@@ -147,5 +154,11 @@ export const joinActivity = (data) => {
       .catch(error => {
         dispatch(getError(error));
       })
+  }
+}
+
+export const selectActivity = (id) => {
+  return dispatch => {
+    dispatch(removeActivity(id))
   }
 }

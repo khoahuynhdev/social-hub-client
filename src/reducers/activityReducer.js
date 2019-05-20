@@ -8,11 +8,18 @@ const activityReducer = (state = initialState, action) => {
       const newActivities = state.concat(action.activities)      
       return newActivities
     case types.RESET_ACTIVITIES:
-      return action.activities  
+      return action.activities
+    case types.REMOVE_ACTIVITIES:
+      const index = state.findIndex(activity => activity.A_ID === action.id)
+      if (index !== -1) {
+        state.splice(index, 1)
+        return [...state]
+      }
+      return [...state]
     default:
       break;
   }
-  return state
+  return [...state]
 }
 
 export default activityReducer;
