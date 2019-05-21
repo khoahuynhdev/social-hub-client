@@ -26,8 +26,7 @@ class Information extends Component {
     
   }
 
-  responseFacebook = (response) => {
-    console.log(response);
+  responseFacebook = (response) => {    
     if (response.id) {
       const data = {
         facebookID: response.id
