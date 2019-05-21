@@ -47,9 +47,9 @@ class ActivePage extends Component {
 
   onSubmit = event => {
     event.preventDefault();
-    this.props.activate(this.state)
-    // this.setState({ redirect: true });
-    this.props.history.push('/updateInfo')
+    this.props.activate(this.state, () => {
+      this.props.history.push('/updateInfo')
+    })
   }
 
   render() {

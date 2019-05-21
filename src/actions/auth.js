@@ -7,13 +7,14 @@ import * as types from './types';
 import fingerprint from '../utils/fingerprint';
 import setHeaders from '../utils/setHeaders';
 import { resetActivities, resetJointActivities, setActivityDetail, resetNotis } from '../actions/activity';
-export const activate = (data) => {
+export const activate = (data, callback) => {
 	return dispatch => {
 		axios.post('http://localhost:5000/api/users/activate', data)
 			.then(res => {
 				if (res.status === 200 && res.data.msg === 'SUCCESS') {
 					dispatch(getError(null))
 					dispatch(getID(res.data.id))
+					callback()
 				}
 			})
 			.catch(err => {

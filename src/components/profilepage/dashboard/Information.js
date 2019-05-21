@@ -101,7 +101,7 @@ class Information extends Component {
                       name="phone"
                       className="form-control"
                       type="text"
-                      defaultValue={this.props.update && this.props.update.phone ? this.props.update.phone : null}
+                      defaultValue={this.props.update && this.props.update.phone}
                       onChange={this.onChange}
                     />
                   </div>
@@ -113,7 +113,7 @@ class Information extends Component {
                       name="email"
                       className="form-control"
                       type="email"
-                      defaultValue={this.props.update && this.props.update.email ? this.props.update.email : null}
+                      defaultValue={this.props.update && this.props.update.email}
                       onChange={this.onChange}
                     />
                   </div>
@@ -125,7 +125,7 @@ class Information extends Component {
                       name="address"
                       className="form-control"
                       type="text"
-                      defaultValue={this.props.update && this.props.update.address ? this.props.update.address : null}
+                      defaultValue={this.props.update && this.props.update.address}
                       onChange={this.onChange}
                     />
                   </div>

@@ -18,8 +18,7 @@ class ActivityJoinList extends Component {
 			.then(result => {
 				this.setState({ activitiesCount: result.data.activities }, () => {
 					this.fetchMoreData()
-				})
-				
+				})				
 			})
 			.catch(error => {
 				this.setState({ activitiesCount: 1 })

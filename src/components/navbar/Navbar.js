@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { setCurrentUser, logout, resetError } from '../../actions/auth'
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
 class Navbar extends Component {
   constructor(props) {
@@ -55,10 +55,10 @@ class Navbar extends Component {
                 </li>
 
                 <li className="nav-item">
-                  <Link className="btn btn-none text-center" to="./information">
+                  <NavLink className="btn btn-none text-center" to="./information">
                     <i className="fas fa-user mr-1"></i>
                     {this.props.auth.profile.ID}
-                  </Link>
+                  </NavLink>
                 </li>
 
                 <li className="nav-item">
