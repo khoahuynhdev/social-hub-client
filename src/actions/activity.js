@@ -66,6 +66,12 @@ export const fetchJointActivities = (data) => {
       })
   }
 }
+
+export const resetFetchJointActivities = (data) => {
+  return dispatch => {
+    dispatch(resetJointActivities(data))
+  }
+}
 export const fetchActivitiesAdmin = (data) => {
   return dispatch => {
     setTimeout(() => {

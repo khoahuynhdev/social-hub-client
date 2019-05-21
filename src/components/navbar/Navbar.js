@@ -37,34 +37,38 @@ class Navbar extends Component {
               <img
                 src="img/SocialHub-128.png"
                 className="logo"
-                alt="nothing"
+                alt="hslogo"
               />
             </Link>
             {
-              this.props.auth.isAuthenticated ? <ul className="navbar-nav ml-auto mt-2 mt-lg-0">
+              this.props.auth.isAuthenticated && <ul className="navbar-nav ml-auto mt-2 mt-lg-0">
                 <li className="nav-item">
                   <Link className="btn btn-none text-center" to="./noti" replace>
                     <i className="far fa-bell" />
-                  </Link></li>
+                  </Link>
+                </li>
+
                 <li className="nav-item">
                   <Link className="btn btn-none text-center" to="./">
                     <i className="fas fa-tasks" />
                   </Link>
                 </li>
+
                 <li className="nav-item">
                   <Link className="btn btn-none text-center" to="./information">
                     <i className="fas fa-user mr-1"></i>
                     {this.props.auth.profile.ID}
                   </Link>
                 </li>
+
                 <li className="nav-item">
                   <button className="btn btn-none text-center" onClick={this.props.logout}>
                     <i className="fas fa-sign-out-alt"></i>
                     logout
                   </button>
                 </li>
+
               </ul>
-                : null
             }
 
           </div>

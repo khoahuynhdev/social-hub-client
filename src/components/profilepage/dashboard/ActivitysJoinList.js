@@ -1,91 +1,65 @@
 import React, { Component } from 'react';
 import ActivityJoin from './ActivityJoin';
 import { connect } from 'react-redux';
-import { fetchJointActivities } from '../../../actions/activity';
-import InfiniteScroll from "react-infinite-scroll-component";
+import { fetchJointActivities, resetFetchJointActivities } from '../../../actions/activity';
 import axios from 'axios';
 class ActivityJoinList extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			hasMore: true,
-			skip: 10,
-			limit: 10,
+			skip: 0,
 			activitiesCount: 0
 		}
 	}
 	componentDidMount() {
+		this.props.resetFetchJointActivities([]);
 		axios.get(`http://localhost:5000/api/activities/joint/count`)
 			.then(result => {
 				this.setState({ activitiesCount: result.data.activities })
+				this.fetchMoreData()
 			})
 			.catch(error => {
-				this.setState({ activitiesCount: 10 })
-			})
-		this.props.fetchJointActivities({ skip: 0, limit: 10 })
+				this.setState({ activitiesCount: 1 })
+			})		
 	}
 	fetchMoreData = () => {
 		if (this.props.jointActivities.length >= this.state.activitiesCount) {
 			return this.setState({ hasMore: false });
 		}
-		this.props.fetchJointActivities({ skip: this.state.skip, limit: 10 })
-		this.setState({ skip: this.state.skip + 10 })
-
+		else {
+			this.props.fetchJointActivities({ skip: this.state.skip, limit: 10 })
+			this.setState({ skip: this.state.skip + 10, hasMore: true })
+		}
 	}
 
 	render() {
 		return (
 			<div className="card">
 				<div className="card-header">
-					<h4 className="text-center mb-auto mt-auto">Danh Sách Các Hoạt Động Đã Tham Gia</h4>
+					<h4 className="text-center mb-auto mt-auto">Danh Sách Các Hoạt Động Đã Đăng Ký</h4>
 				</div>
 				<div className="row mb-auto mt-auto card-body">
 					<div className="col-6 col-sm-4 input-group">
-						<input
-							type="text"
-							className="form-control"
-							name=""
-							id=""
-							aria-describedby="helpId"
-							placeholder=""
-						/>
-						<div className="input-group-append">
-							<button
-								className="btn btn-xs btn-myapp text-center"
-							>
-								<i className="fas fa-search fa-xs" />
-							</button>
-						</div>
+						<div>diem ren luyen</div>
 					</div>
-				</div>
-				<InfiniteScroll
-					dataLength={this.props.jointActivities.length}
-					next={this.fetchMoreData}
-					hasMore={this.state.hasMore}
-					loader={<h4>đang tải...</h4>}
-					endMessage={
-						<p style={{ textAlign: "center" }}>
-							<b>Bạn đã thấy hết sự kiện</b>
-						</p>
-					}
-				>
-					<table className="table table-hover ml-auto mr-auto">
+				</div>				
+				<table className="table table-hover ml-auto mr-auto">
 						<thead>
 							<tr>
+								<th>STT</th>
 								<th>Tên Hoạt Động</th>
-								<th>Bắt Đầu</th>
-								<th>Kết Thúc</th>
-								<th>Chỉnh sửa</th>
+								<th>Trạng Thái</th>
+								<th>Chi Tiết</th>
 							</tr>
 						</thead>
 						<tbody>
 							{this.props.jointActivities.map((item, index) => {
-								return <ActivityJoin activity={item} key={index} />
+								return <ActivityJoin activity={item} key={index} index={index + 1} />
 							})}
 						</tbody>
 					</table>
-				</InfiniteScroll>
-
+				{this.props.jointActivities.length < this.state.activitiesCount && <button onClick={this.fetchMoreData}>Load More</button>}
 			</div>
 		);
 	}
@@ -97,4 +71,4 @@ const mapStateToProps = (state) => {
 	}
 }
 
-export default connect(mapStateToProps, { fetchJointActivities })(ActivityJoinList);
+export default connect(mapStateToProps, { fetchJointActivities, resetFetchJointActivities })(ActivityJoinList);
