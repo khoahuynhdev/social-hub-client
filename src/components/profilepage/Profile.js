@@ -69,7 +69,7 @@ class Profile extends Component {
         </button>
           </div>
         </div>
-        <div className="col-md-8">
+        <div className="col-md-12 col-lg-8">
           <Switch>
 
             <Route path={`${this.props.match.url}/noti`} exact component={NotificationDashB} />

@@ -22,7 +22,7 @@ class NotificationDashB extends Component {
 				this.setState({ notisCount: result.data.notis })
 			})
 			.catch(error => {
-				this.setState({ notisCount: 10 })
+				this.setState({ notisCount: 1 })
 			})
 	}
 
