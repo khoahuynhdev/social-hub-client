@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { postUpdateInfo, getUpdateInfo } from '../../../actions/auth';
+import { postUpdateInfo, getUpdateInfo, connectFacebook } from '../../../actions/auth';
 import FacebookLogin from 'react-facebook-login';
-import axios from 'axios';
-import setHeaders from '../../../utils/setHeaders';
 class Information extends Component {
   constructor(props) {
     super(props);
@@ -31,18 +29,7 @@ class Information extends Component {
       const data = {
         facebookID: response.id
       }
-      const token = localStorage.getItem('token');
-      const fingerprint = localStorage.getItem('fingerprint');
-      if (token && fingerprint) {
-        setHeaders(token, fingerprint);
-        axios.post(`http://localhost:5000/api/users/updatefb`, data)
-          .then(result => {
-            console.log(result.data);
-          })
-          .catch(error => {
-            console.log(error.data);
-          })
-      }
+      this.props.connectFacebook(data);
     }
   }
 
@@ -237,4 +224,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { postUpdateInfo, getUpdateInfo })(Information);
+export default connect(mapStateToProps, { postUpdateInfo, getUpdateInfo, connectFacebook })(Information);

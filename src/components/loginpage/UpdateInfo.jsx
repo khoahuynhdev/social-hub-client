@@ -45,7 +45,7 @@ class UpdateInfo extends Component {
     event.preventDefault();
     const { errors, valid } = this.validateInput(this.state);
     if (valid) {
-      updateInfo(this.state, () => {
+      this.props.updateInfo(this.state, () => {
         this.setState({
           errors: errors,
           redirect: true
@@ -165,4 +165,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { resetActivate })(UpdateInfo);
+export default connect(mapStateToProps, { resetActivate, updateInfo })(UpdateInfo);

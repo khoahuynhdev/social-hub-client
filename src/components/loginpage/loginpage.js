@@ -89,8 +89,7 @@ class loginpage extends Component {
                   <input
                     type="password"
                     className="form-control"
-                    name="password"
-                    id="password"
+                    name="password"                    
                     onChange={this.onChange}
                     required
                   />

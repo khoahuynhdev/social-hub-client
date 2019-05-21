@@ -2,9 +2,10 @@
 import axios from "axios"
 
 const setHeaders = (token, fingerprint) => {
-  if (axios.defaults.headers.common['Authorization'] && axios.defaults.headers.common['fingerprint']) return
+  
 
   if (token && fingerprint) {
+    if (axios.defaults.headers.common['Authorization'] && axios.defaults.headers.common['fingerprint']) return
     axios.defaults.headers.common['Authorization'] = token
     axios.defaults.headers.common['fingerprint'] = fingerprint
   } else {
