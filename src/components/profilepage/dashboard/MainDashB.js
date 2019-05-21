@@ -40,8 +40,7 @@ class MainDashB extends Component {
 			<div className="card mt-2">
 				<div className="card-header">
 					<h4>HOẠT ĐỘNG</h4>
-
-					<div className="justify-content-start">
+					{/* <div className="justify-content-start">
 						<form className="form-inline">
 							<div className="form-group form-inline">
 								<select
@@ -63,7 +62,7 @@ class MainDashB extends Component {
 							</div>
 						</form>
 
-					</div>
+					</div> */}
 				</div>
 
 				<div className="card-body d-flex justify-content-end">
