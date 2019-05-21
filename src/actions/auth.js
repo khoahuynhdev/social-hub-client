@@ -166,7 +166,7 @@ export const getJoinYC = () => {
 	}
 }
 
-export const joinYC = (data) => {
+export const joinYC = () => {
 	return dispatch => {
 		axios.post(`http://localhost:5000/api/users/joinyc`)
 			.then(result => {

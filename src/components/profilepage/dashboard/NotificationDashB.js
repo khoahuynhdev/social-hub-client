@@ -3,23 +3,26 @@ import NotiD from './NotiD'
 import axios from 'axios';
 import InfiniteScroll from "react-infinite-scroll-component";
 import { connect } from 'react-redux';
-import { fetchNotis } from '../../../actions/activity';
+import { fetchNotis, resetFetchNotis } from '../../../actions/activity';
 class NotificationDashB extends Component {
 
 	constructor(props) {
 		super(props);
 		this.state = {
 			hasMore: true,
-			skip: 10,
+			skip: 0,
 			limit: 10,
 			notisCount: 0
 		}
 	}
 
 	componentDidMount() {
+		this.props.resetFetchNotis()
 		axios.get(`http://localhost:5000/api/notis/count`)
 			.then(result => {
-				this.setState({ notisCount: result.data.notis })
+				this.setState({ notisCount: result.data.notis }, () => {
+					this.fetchMoreData()
+				})
 			})
 			.catch(error => {
 				this.setState({ notisCount: 1 })
@@ -40,30 +43,7 @@ class NotificationDashB extends Component {
 			<div className="card mt-2">
 				<div className="card-header">
 					<h4>THÔNG BÁO</h4>
-					{/* <div className="justify-content-start">
-						<form className="form-inline">
-							<div className="form-group form-inline">
-								<select
-									className="custom-select my-1 mr-sm-2"
-									id="inlineFormCustomSelectPref"
-								>
-									<option >Tất Cả</option>
-									<option value="1">Khoa</option>
-									<option value="2">Ngành</option>
-									<option value="3">Lớp</option>
-								</select>
-							</div>
-							<div className="form-group ml-auto">
-								<input type="text" className="form-control mr-1" id="formGroupExampleInput" placeholder="Tìm Kiếm" />
-
-								<button type="submit" className="btn btn-primary my-1">
-									Tìm Kiếm
-                  </button>
-							</div>
-						</form>
-
-					</div> */}
-
+					
 				</div>
 				<div className="card-body d-flex justify-content-end">
 					<div className="row">
@@ -96,4 +76,4 @@ const mapStateToProps = state => {
 		notis: state.notis
 	}
 }
-export default connect(mapStateToProps, { fetchNotis })(NotificationDashB);
+export default connect(mapStateToProps, { fetchNotis, resetFetchNotis })(NotificationDashB);

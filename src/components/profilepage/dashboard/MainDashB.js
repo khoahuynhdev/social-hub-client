@@ -2,19 +2,20 @@ import React, { Component } from "react";
 import ActivityD from "./ActivityD";
 import { connect } from 'react-redux';
 import InfiniteScroll from "react-infinite-scroll-component";
-import { fetchActivities } from '../../../actions/activity';
+import { fetchActivities, resetFetchActivities } from '../../../actions/activity';
 import axios from 'axios';
 class MainDashB extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {			
 			hasMore: true,
-			skip: 10,
+			skip: 0,
 			limit: 10,
 			activitiesCount: 0
 		}
 	}
 	componentDidMount() {
+		this.props.resetFetchActivities();
 		axios.get(`http://localhost:5000/api/activities/count`)
 			.then(result => {
 				this.setState({ activitiesCount: result.data.activities }, () => {
@@ -100,4 +101,4 @@ const mapStateToProps = (state) => {
 	}
 }
 
-export default connect(mapStateToProps, { fetchActivities })(MainDashB);
+export default connect(mapStateToProps, { fetchActivities, resetFetchActivities })(MainDashB);
