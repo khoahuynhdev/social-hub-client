@@ -24,13 +24,15 @@ class Information extends Component {
     
   }
 
-  responseFacebook = (response) => {    
+  responseFacebook = (response) => { 
     if (response.id) {
       const data = {
         facebookID: response.id
       }
       this.props.connectFacebook(data);
+      return alert('kết nối facebook thành công');
     }
+    alert('kết nối thất bại, hãy thử lại sau');
   }
 
 
