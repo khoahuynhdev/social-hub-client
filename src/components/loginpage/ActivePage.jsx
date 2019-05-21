@@ -48,7 +48,8 @@ class ActivePage extends Component {
   onSubmit = event => {
     event.preventDefault();
     this.props.activate(this.state)
-    this.setState({ redirect: true });
+    // this.setState({ redirect: true });
+    this.props.history.push('/updateInfo')
   }
 
   render() {
@@ -58,7 +59,7 @@ class ActivePage extends Component {
     const majorsElements = this.Majors.map((item, index) => {
       return <option value={item} key={index}>{item}</option>
     })
-    if (this.props.id) return <Redirect to='/updateInfo' />;
+    // if (this.props.id) return <Redirect to='/updateInfo' />;
     return (
       <div className="container app-content text-center">
         <div className="row form-vertical mt-10 ">

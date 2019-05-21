@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import _ from 'lodash';
 import { connect } from 'react-redux';
 import { resetActivate, updateInfo } from '../../actions/auth';
-import { Redirect } from 'react-router-dom';
 class UpdateInfo extends Component {
 
   constructor(props) {
@@ -14,7 +13,6 @@ class UpdateInfo extends Component {
       email: "",
       phone: "",
       address: "",
-      redirect: false,
       errors: {}
     }
   }
@@ -48,8 +46,8 @@ class UpdateInfo extends Component {
       this.props.updateInfo(this.state, () => {
         this.setState({
           errors: errors,
-          redirect: true
         })
+        this.props.history.push('/');
       })
     } else {
       this.setState({ errors });
@@ -57,8 +55,7 @@ class UpdateInfo extends Component {
   }
 
   render() {
-    const { errors, redirect } = this.state;
-    if (redirect) return <Redirect to='/' />;
+    const { errors } = this.state;
     return (
       <div className="card">
         <div className="card-body form-group">

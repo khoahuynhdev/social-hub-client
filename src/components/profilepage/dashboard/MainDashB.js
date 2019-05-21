@@ -14,16 +14,16 @@ class MainDashB extends Component {
 			activitiesCount: 0
 		}
 	}
-
 	componentDidMount() {
 		axios.get(`http://localhost:5000/api/activities/count`)
 			.then(result => {
-				this.setState({ activitiesCount: result.data.activities })
+				this.setState({ activitiesCount: result.data.activities }, () => {
+					this.fetchMoreData()
+				})
 			})
 			.catch(error => {
-				this.setState({ activitiesCount: 10 })
-			})
-		this.props.fetchActivities({ skip: 0, limit: 10 });
+				this.setState({ activitiesCount: 1 })
+			})		
 	}
 
 	fetchMoreData = () => {
@@ -87,7 +87,7 @@ class MainDashB extends Component {
 						</InfiniteScroll>
 					</div>
 				</div>
-				{this.props.errors && this.props.errors.config ? <div>Đã có lỗi xảy ra, vui lòng thử lại sau</div> : null}
+				{this.props.errors && this.props.errors.config && <div>Đã có lỗi xảy ra, vui lòng thử lại sau</div>}
 			</div>
 		);
 	}

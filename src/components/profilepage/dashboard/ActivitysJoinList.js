@@ -16,8 +16,10 @@ class ActivityJoinList extends Component {
 		this.props.resetFetchJointActivities([]);
 		axios.get(`http://localhost:5000/api/activities/joint/count`)
 			.then(result => {
-				this.setState({ activitiesCount: result.data.activities })
-				this.fetchMoreData()
+				this.setState({ activitiesCount: result.data.activities }, () => {
+					this.fetchMoreData()
+				})
+				
 			})
 			.catch(error => {
 				this.setState({ activitiesCount: 1 })
