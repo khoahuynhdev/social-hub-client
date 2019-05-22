@@ -11,7 +11,7 @@ export const activate = (data, callback) => {
 	return dispatch => {
 		axios.post('http://localhost:5000/api/users/activate', data)
 			.then(res => {
-				if (res.status === 200 && res.data.msg === 'SUCCESS') {
+				if (res.data.msg === 'SUCCESS') {
 					dispatch(getError(null))
 					dispatch(getID(res.data.id))
 					callback()
@@ -198,8 +198,22 @@ export const connectFacebook = (data) => {
 	return dispatch => {
 		axios.post(`http://localhost:5000/api/users/updatefb`, data)
 			.then(result => {
-				dispatch(getError(null))
-				console.log(result.data);
+				dispatch(getError(null))				
+			})
+			.catch(err => {
+				dispatch(getError(_.get(err, 'response.data')))
+			})
+	}
+}
+
+export const changePassword = (data, callback) => {
+	return dispatch => {
+		axios.post(`http://localhost:5000/api/users/resetpassword`, data)
+			.then(result => {
+				if (result.data.msg === 'SUCCESS'){
+					dispatch(getError(null))
+					callback()
+				}
 			})
 			.catch(err => {
 				dispatch(getError(_.get(err, 'response.data')))

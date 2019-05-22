@@ -77,7 +77,7 @@ class UpdateInfo extends Component {
                       onChange={this.onChange}
                       required
                     />
-                    <small className="form-text text-danger">{errors.password ? "mật khẩu phải có ít nhất 8 kí tự" : ""}</small>
+                    <small className="form-text text-danger">{errors.password && "mật khẩu phải có ít nhất 8 kí tự"}</small>
                   </div>
 
                   <div className="col-12">
@@ -92,7 +92,7 @@ class UpdateInfo extends Component {
                       onChange={this.onChange}
                       required
                     />
-                    <small className="form-text text-danger">{errors.password2 ? "nhập lại mật khẩu không đúng" : ""}</small>
+                    <small className="form-text text-danger">{errors.password2 && "nhập lại mật khẩu không đúng"}</small>
                   </div>
 
                   <div className="col-12">

@@ -15,7 +15,7 @@ class MainDashB extends Component {
 		}
 	}
 	componentDidMount() {
-		this.props.resetFetchActivities();
+		this.props.resetFetchActivities([]);
 		axios.get(`http://localhost:5000/api/activities/count`)
 			.then(result => {
 				this.setState({ activitiesCount: result.data.activities }, () => {

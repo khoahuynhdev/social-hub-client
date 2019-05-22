@@ -88,15 +88,15 @@ export const fetchActivitiesAdmin = (data) => {
 	}
 }
 
-export const resetFetchActivities = () => {
+export const resetFetchActivities = (data) => {
 	return dispatch => {
-		dispatch(resetActivities([]))
+		dispatch(resetActivities(data))
 	}
 }
 
-export const resetFetchNotis = () => {
+export const resetFetchNotis = (data) => {
 	return dispatch => {
-		dispatch(resetNotis([]))
+		dispatch(resetNotis(data))
 	}
 }
 
