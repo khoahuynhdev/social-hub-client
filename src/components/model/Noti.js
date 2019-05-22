@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { connect } from "react-redux";
-import * as action from '../../action/adminauth/index'
 class Noti extends Component {
   constructor(props) {
     super(props);

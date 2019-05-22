@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import InfiniteScroll from "react-infinite-scroll-component";
 import { getNotisList } from '../../actions/activity';
 import NotisItem from './NotisItem';
 

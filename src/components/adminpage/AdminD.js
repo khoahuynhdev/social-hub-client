@@ -13,7 +13,6 @@ import { connect } from "react-redux";
 import { resetStudentList } from "../../action/adminauth/index";
 import StudentHSV from "./StudentHSV";
 import StudentYC from "./StudentYC";
-import { joinYC } from "../../actions/auth";
 import JoinYc from "../model/JoinYc";
 import NotiList from "./NotiList";
 import Sender from "../model/Sender";

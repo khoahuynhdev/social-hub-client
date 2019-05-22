@@ -6,7 +6,7 @@ const isAddNewActivity = (state = initialState, action) => {
     case "Is_Add_New_Activity": 
       return action.value
     default:
-      return state
+      break;
   }
   return state
 }
