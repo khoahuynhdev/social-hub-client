@@ -50,12 +50,10 @@ onSubmit=(e)=>
                       <h6><label>Tên Đăng Nhập</label></h6>
                          <input type="text" className="form-control" name="username" id="username" placeholder="Username" onChange={this.onChange}/>
                          <h6><label>Mật Khẩu</label> </h6>
-                         <input type="text" className="form-control" name="password" id="password" placeholder="Password" onChange={this.onChange}/>
+                         <input type="password" className="form-control" name="password" id="password" placeholder="Password" onChange={this.onChange}/>
                          <div className="mt-2">
                          <button type="submit"  className="btn btn-myapp  col-12 col-md-12 col-lg-12" >Đăng Nhập</button>
                          </div>
-                        
-                       
                      </div>
                      </form>
                    </div>

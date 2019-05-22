@@ -5,6 +5,8 @@ const studentDetailReducer = (state = initialState, action) => {
         case "GET_STUDENTDETAIL":
             
             return action.student;
+            default:
+                break;
     }
   return state;
 };

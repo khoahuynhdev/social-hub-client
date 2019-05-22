@@ -180,3 +180,25 @@ export const selectActivity = (id) => {
 		dispatch(removeActivity(id))
 	}
 }
+export const getNotisList = (data) => {
+  return function(dispatch)
+  {
+  axios.get(`http://localhost:5000/api/notis/notigetall/?skip=${data.skip}&limit=${data.limit}`)
+        .then(res=>{
+          console.log(res.data)
+        return dispatch({
+        type:"GET_NOTISLIST",
+        data:res.data.result,
+    })})
+    .catch(res=>dispatch({
+      type:"GET_NOTISLIST",
+      data:[],
+    }))
+  }
+}
+export const getNoti = (noti) => {
+  return {
+    type: "NOTI_DETAIL",
+    noti
+  }
+}

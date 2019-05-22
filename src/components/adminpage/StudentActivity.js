@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Students from "./Students";
 import { getActivityStudentList } from "../../action/adminauth/index";
-
 import InfiniteScroll from "react-infinite-scroll-component";
 import { connect } from "react-redux";
 class StudentActivity extends Component {

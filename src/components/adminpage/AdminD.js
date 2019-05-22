@@ -9,17 +9,20 @@ import { Route, Switch, withRouter, Redirect, Link } from "react-router-dom";
 import ActivityM from "../model/Activity";
 import Noti from "../model/Noti";
 import StudentActivity from "./StudentActivity";
-import {connect} from 'react-redux';
-import {resetStudentList} from '../../action/adminauth/index'
+import { connect } from "react-redux";
+import { resetStudentList } from "../../action/adminauth/index";
 import StudentHSV from "./StudentHSV";
+import StudentYC from "./StudentYC";
+import { joinYC } from "../../actions/auth";
+import JoinYc from "../model/JoinYc";
+import NotiList from "./NotiList";
+import Sender from "../model/Sender";
 class AdminD extends Component {
-  componentDidMount(){
-    console.log(this.props.match.url)
-    return <Redirect to={this.props.match.url}/>
-      
+  componentDidMount() {
+    console.log(this.props.match.url);
+    return <Redirect to={this.props.match.url} />;
   }
   render() {
-    
     return (
       <div>
         <div className="col-12">
@@ -33,20 +36,30 @@ class AdminD extends Component {
             <div className="card-footer">
               <div className="row">
                 <div className="col-4 mb-1">
-                  <Link className="btn btn-block btn-myapp" onClick={()=>this.props.resetStudentList([])} to="./">
+                  <Link
+                    className="btn btn-block btn-myapp"
+                    onClick={() => this.props.resetStudentList([])}
+                    to="./"
+                  >
                     Danh Sách Sinh Viên
                   </Link>
                 </div>
                 <div className="col-4 mb-1">
                   {" "}
-                  <button className="btn btn-block btn-myapp" type="button">
+                  <Link className="btn btn-block btn-myapp"
+                    to="./pendingjoinYC"
+                    onClick={() => this.props.resetStudentList([])}>
                     Danh Sách Chuyển Sinh Hoạt Đoàn
-                  </button>
+                  </Link>
                 </div>
                 <div className="col-4 mb-1">
-                  <button className="btn btn-block btn-myapp" type="button">
+                  <Link
+                    className="btn btn-block btn-myapp"
+                    to="./pendingjoinHSV"
+                    onClick={() => this.props.resetStudentList([])}
+                  >
                     Danh Sách Đăng Ký Vào HSV
-                  </button>
+                  </Link>
                 </div>
                 <div className="col-4 mb-1">
                   <Link className="btn btn-block btn-myapp" to="./activity">
@@ -55,15 +68,15 @@ class AdminD extends Component {
                 </div>
                 <div className="col-4 mb-1">
                   {" "}
-                  <button className="btn btn-block btn-myapp" type="button">
+                  <Link className="btn btn-block btn-myapp" to="./notis">
                     Danh Sách Thông Báo
-                  </button>
+                  </Link>
                 </div>
 
                 <div className="col-4 mb-1">
                   {" "}
-                  <button className="btn btn-block btn-myapp" type="button">
-                    Danh Sách Thông Báo
+                  <button className="btn btn-block btn-myapp">
+                    Lập Báo Cáo
                   </button>
                 </div>
               </div>
@@ -77,7 +90,21 @@ class AdminD extends Component {
               exact
               component={Activity}
             />
-            <Route path={`${this.props.match.url}/pendingjoinHSV`} exact component={StudentHSV} />
+            <Route
+              path={`${this.props.match.url}/pendingjoinHSV`}
+              exact
+              component={StudentHSV}
+            />
+            <Route
+              path={`${this.props.match.url}/pendingjoinYC`}
+              exact
+              component={StudentYC}
+            />
+            <Route
+              path={`${this.props.match.url}/notis`}
+              exact
+              component={NotiList}
+            />
             <Route
               path={`${this.props.match.url}/:aid`}
               component={StudentActivity}
@@ -87,11 +114,17 @@ class AdminD extends Component {
         </div>
         <ActivityModel />
         <StudentDetail />
-
+        <JoinYc/>
+        <Sender/>
         <ActivityM adminID={this.props.match.params.admin} />
-        <Noti />
+        <Noti adminID={this.props.match.params.admin}/>
       </div>
     );
   }
 }
-export default withRouter(connect(null,{resetStudentList})(AdminD));
+export default withRouter(
+  connect(
+    null,
+    { resetStudentList }
+  )(AdminD)
+);

@@ -14,6 +14,8 @@ import joinYC from './joinYCReducer';
 import notis from './notiReducer';
 import activityEditing from './activityEditing';
 import studentListType from './studentListType';
+import isJoinYC from './isJoinYC';
+import notiEditing from './notiEditing';
 const root = combineReducers({
   errors,
   auth,
@@ -29,8 +31,9 @@ const root = combineReducers({
   joinYC,
   notis,
   activityEditing,
-  studentListType
-
+  studentListType,
+  isJoinYC,
+  notiEditing
 })
 
 export default root;

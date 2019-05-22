@@ -23,8 +23,9 @@ class Students extends Component {
        return "Điểm Danh"
         case 'Pending':
         return "Duyệt"
-          default:
-              
+        case 'PendingYC':
+          return "Why"
+          default:     
         return "Đã Duyệt"
     }
   }
@@ -35,7 +36,8 @@ class Students extends Component {
         return axios
       .post('http://localhost:5000/api/admins/resetStudent',this.props.item)
         .then(res=>{
-          if(res.data.msg==='Success'){
+          if(res.data.msg==='SUCCESS'){
+            alert("Sinh viên đã được khôi phục tài khoản về trạng thái ban đầu")
           }
         })
         .catch(console.log)
@@ -66,7 +68,7 @@ class Students extends Component {
   }
   render() {
     const student=this.props.item
-    
+    console.log(this.props)
     return (
       <tr key={this.props.index}>
         <td>{this.props.index+1}</td>
@@ -80,12 +82,15 @@ class Students extends Component {
                   data-target="#StudentDetail">
             Chi tiết
           </button>{" "}
-          &nbsp;
-          <button type="button" onClick={this.resetStudent.bind(null,this.state.types)} className="btn btn-md btn-primary">
-            {this.typeOfButton(this.state.types)}
+          <button type="button" className={`btn btn-md btn-info ${this.state.types==="PendingYC"||this.state.types==="AcceptedYC" ? "":"d-none"}`}  onClick={this.getDetail} data-toggle="modal"
+                  data-target="#YCDETAIL">
+            Duyệt 
           </button>{" "}
           &nbsp;
-          <button type="button" onClick={this.resetStudent.bind(null,this.state.types)} className={`btn btn-md btn-danger ${this.state.types==="Pending" ? "":"d-none"}`}>
+          <button type="button" onClick={this.resetStudent.bind(null,this.state.types)} className={`btn btn-md btn-primary ml-1 ${this.state.types==="PendingYC" ? "d-none":""}`}>
+            {this.typeOfButton(this.state.types)}
+          </button>
+          <button type="button" onClick={this.resetStudent.bind(null,this.state.types)} className={`btn btn-md btn-danger ${this.state.types==="Pending"||this.state.types==="PendingYC" ? "":"d-none"}`}>
             Từ Chối
           </button>
         </td>
