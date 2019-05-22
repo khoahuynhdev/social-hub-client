@@ -17,8 +17,6 @@ class Activity extends Component {
     };
   }
   componentWillReceiveProps=(nextProps) =>{
-    console.log('componentWillReceiveProps');
-    console.log(nextProps)
       if(nextProps.isAddNewActivity)
       {
           this.setState({
@@ -85,7 +83,7 @@ class Activity extends Component {
         <div className="modal-dialog" role="document">
           <div className="modal-content text-center">
             <div className="modal-header text-center">
-              <h5 className="modal-title ">Tạo Hoạt Động</h5>
+              <h5 className="modal-title ">{this.props.isAddNewActivity ? "Tạo Hoạt Động":"Chỉnh Sửa Hoạt Động"}</h5>
               <button
                 type="button"
                 className="close"

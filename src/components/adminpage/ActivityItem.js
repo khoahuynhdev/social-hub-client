@@ -12,15 +12,15 @@ class ActivityItem extends Component {
         <td>Từ {this.props.activity.STARTDATE} Đến {this.props.activity.ENDDATE}</td>
         <td>
           <button data-toggle="modal" onClick={()=>{
-            this.props.isAddNewActivity(false);
             this.props.getActivityEditing(this.props.activity);
+            this.props.isAddNewActivity(false);
           }}
             data-target="#ActivityModel" type="button" className="btn btn-sm btn-info">
             Chi Tiết
           </button>
         </td>
         <td><Link
-           className="btn btn-sm btn-block btn-info" onClick={()=>this.props.resetStudentList([])} to={`./${this.props.activity.A_ID}`}>
+           className="btn btn-sm btn-block btn-info" onClick={()=>{this.props.resetStudentList([])}} to={`./${this.props.activity.A_ID}`}>
             Danh Sách
           </Link>{""}</td>
       </tr>
@@ -36,9 +36,12 @@ const mapDispatchToProps = (dispatch) => {
           },
           changeStudentList:(value)=>{
             dispatch(changeStudentList(value))
+          },
+          resetStudentList:(value)=>{
+            dispatch(resetStudentList(value))
           }
       }
   }
 
 
-export default connect(null,{mapDispatchToProps,resetStudentList})(ActivityItem);
+export default connect(null,mapDispatchToProps)(ActivityItem);

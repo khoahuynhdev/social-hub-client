@@ -117,6 +117,10 @@ class loginpage extends Component {
                       className="btn btn-myapp btn-block"
                       value="Đăng nhập"
                     />
+                   
+                  </div>
+                  <div className="col-12 mt-2">                    
+                    <Link className="btn btn-myapp2 btn-block" to="/adminlogin">Đăng Nhập Quyền Admin</Link>
                   </div>
                 </div>
               </form>

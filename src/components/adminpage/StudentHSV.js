@@ -28,7 +28,7 @@ class StudentHSV extends Component {
         return (
             <div className="mt-5">
         <h1 className="text-center mb-5">
-          Danh Sách Duyệt Vào Hội Sinh Viên BLALA
+          Danh Sách Duyệt Vào Hội Sinh Viên 
         </h1>
         <div className="row mb-3">
           <div className="col-6 col-sm-4 input-group">

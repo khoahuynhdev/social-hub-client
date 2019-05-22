@@ -9,6 +9,9 @@ const activityReducer = (state = initialState, action) => {
       return newNotis
     case types.RESET_NOTIS:
       return action.notis
+    case "GET_NOTISLIST":
+      const allNotis = state.concat(action.data)
+    return allNotis
     default:
       break;
   }

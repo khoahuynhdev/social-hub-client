@@ -44,6 +44,22 @@ export const getHSVStudentList = (data) => {
     }))
   }
 }
+export const getYouthStudentList = (data) => {
+  return function(dispatch)
+  {
+  Axios.get(`http://localhost:5000/api/admins/getyclist/?skip=${data.skip}&limit=${data.limit}`)
+        .then(res=>{
+          console.log(res.data)
+        return dispatch({
+        type:"GET_PENDINGYOUTHSTUDENTLIST",
+        data:res.data,
+    })})
+    .catch(res=>dispatch({
+      type:"GET_PENDINGYOUTHSTUDENTLIST",
+      data:[],
+    }))
+  }
+}
 export const getStudentDetail = (student) => {
   return {
     type: "GET_STUDENTDETAIL",
@@ -69,11 +85,8 @@ export const changeStudentList=(value)=>{
   }
 }
 export const resetStudentList=(value)=>{
-  return function(dispatch)
-  {
-  return dispatch({
+  return { 
     type:"RESET_STARRAY",
-    value
-  })
-}
+    value 
+  }
 }

@@ -1,6 +1,35 @@
 import React, { Component } from "react";
-
+import axios from "axios";
+import { connect } from "react-redux";
+import * as action from '../../action/adminauth/index'
 class Noti extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      NM_NAME:"",
+      CONTENT:"",
+      ADMIN_ID:this.props.adminID,
+      SENDER:""
+    };
+  }
+  onSubmit = event => {
+    event.preventDefault();
+    console.log(this.props.isAddNewActivity);
+      axios
+        .post(
+          "http://localhost:5000/api/notis/notipost",
+          this.state
+        )
+        .then(res => {
+          console.log(res)
+        })
+        .catch(console.log);
+  }
+  onChange = event => {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+  };
   render() {
     return (
       <div
@@ -14,30 +43,22 @@ class Noti extends Component {
         <div className="modal-dialog" role="document">
           <div className="modal-content text-center">
             <div className="modal-header text-center">
-              <h5 className="modal-title ">Gửi Thông Báo</h5>
-              <button
-                type="button"
-                className="close"
-                data-dismiss="modal"
-                aria-label="Close"
-              >
-                <span aria-hidden="true">&times;</span>
-              </button>
+              <h5 className="modal-title ">Tạo Thông Báo</h5>
             </div>
-
             <div className="modal-body">
-              <form>
+              <form onSubmit={this.onSubmit}>
                 <div>
                   <div className="form-group">
                     <label htmlFor="txtTenHoatDong">
-                      <h6>Tên Hoạt Động</h6>
+                      <h6>Tên thông báo</h6>
                     </label>
                     <input
-                      name="txtTenHoatDong"
+                      name="NM_NAME"
                       className="form-control"
                       id="txtTenHoatDong"
                       type="text"
-                      placeholder="Nhập tên hoạt động"
+                      placeholder="Nhập tên thông báo"
+                      onChange={this.onChange}
                     />
                   </div>
                   <div className="form-group">
@@ -45,71 +66,39 @@ class Noti extends Component {
                       <h6>Nội Dung</h6>
                     </label>
                     <textarea
-                      placeholder="Nhập nội dung hoạt động"
+                     name="CONTENT"
+                      placeholder="Nhập nội dung thông báo"
                       className="form-control "
                       rows="5"
                       cols="35"
+                      onChange={this.onChange}
                     />
                   </div>
-                  <div className="card mb-1">
-                    <div className="form-row m-1 card-body">
-                      <div className=" col-4">
-                        <label htmlFor="txtTenHoatDong">
-                          <h6>Khoa</h6>
-                        </label>
-                        <select id="inputState" className="form-control">
-                          <option>All</option>
-                          <option>...</option>
-                        </select>
-                      </div>
-                      <div className=" col-4">
-                        <label htmlFor="txtTenHoatDong">
-                          <h6>Ngành</h6>
-                        </label>
-                        <select id="inputState" className="form-control">
-                          <option>All</option>
-                          <option>...</option>
-                        </select>
-                      </div>
-                      <div className=" col-4">
-                        <label htmlFor="txtTenHoatDong">
-                          <h6>Lớp</h6>
-                        </label>
-                        <select id="inputState" className="form-control">
-                          <option>All</option>
-                          <option>...</option>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
                   <div className="form-group">
-                    <button
-                      type="button"
-                      className="btn btn-myapp"
-                      data-toggle="collapse"
-                      data-target="#demo"
-                    >
-                      Gửi đến sinh viên
-                    </button>
-                    <div id="demo" className="collapse card mt-1">
-                      <div className="card-header text-center">
-                      
-                        <input type="text" className="form-control" id="MSSV" placeholder="MSSV muốn gửi TB"/>
-                        <button type="submit" className="btn btn-primary ml-2">Thêm Vào Danh Sách</button>
-                      </div>
+                    <label htmlFor="txtTenHoatDong">
+                      <h6>Người Gửi</h6>
+                    </label>
+                    <input
+                      name="SENDER"
+                      className="form-control"
+                      id="txtTenHoatDong"
+                      type="text"
+                      placeholder="Nhập tên thông báo"
+                      onChange={this.onChange}
+                    />
+                  </div>
+                
                       <div className="card-body">
                           
                       </div>
                     </div>
-                  </div>
                   <input
                     className="btn btn-myapp3"
                     name="btnGui"
                     id="btnGui"
-                    type="button"
+                    type="submit"
                     value="Gửi"
                   />
-
                   <input
                     className="btn btn-myapp ml-1"
                     name="btnHuy"
@@ -117,7 +106,6 @@ class Noti extends Component {
                     type="button"
                     value="Huỷ"
                   />
-                </div>
               </form>
             </div>
           </div>

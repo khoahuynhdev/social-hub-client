@@ -28,7 +28,7 @@ class Activity extends Component {
         return (
             <div className="card">
             <div className="card-header">
-        <h4 className="text-center mb-auto mt-auto">Danh Sách Các Hoạt Động Đã Tham Gia</h4>
+        <h4 className="text-center mb-auto mt-auto">Danh Sách Các Hoạt Động</h4>
         </div>
         <div className="row mb-auto mt-auto card-body">
           <div className="col-6 col-sm-4 input-group">
@@ -88,4 +88,4 @@ const mapStateToProps = state => {
     activities: state.activities
   };
 };
-export default connect(mapStateToProps, { fetchActivitiesAdmin })(Activity) ; 
+export default connect(mapStateToProps, { fetchActivitiesAdmin })(Activity) ;   
