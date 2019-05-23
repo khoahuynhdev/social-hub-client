@@ -49,8 +49,8 @@ class Sender extends Component {
     });
   };
   render() {
-    console.log(this.state.NM_ID)
-    console.log(this.props.noti.NM_ID)
+    // console.log(this.state.NM_ID)
+    // console.log(this.props.noti.NM_ID)
     return (
       <div
         className="modal fade"
@@ -132,8 +132,8 @@ class Sender extends Component {
                     onChange={this.onChange}
                   >
                     <option value={null}>Không</option>
-                    {this.state.classes.map((item) => {
-                      return <option value={item.C_ID}>{item.CNAME}</option>
+                    {this.state.classes.map((item, index) => {
+                      return <option value={item.C_ID} key={index}>{item.CNAME}</option>
                     })}
                   </select>
                 </div>

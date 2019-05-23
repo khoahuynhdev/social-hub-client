@@ -18,7 +18,7 @@ import NotiList from "./NotiList";
 import Sender from "../model/Sender";
 class AdminD extends Component {
   componentDidMount() {
-    console.log(this.props.match.url);
+    // console.log(this.props.match.url);
     return <Redirect to={this.props.match.url} />;
   }
   render() {

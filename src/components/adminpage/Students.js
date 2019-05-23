@@ -68,7 +68,7 @@ class Students extends Component {
   }
   render() {
     const student=this.props.item
-    console.log(this.props)
+    // console.log(this.props)
     return (
       <tr key={this.props.index}>
         <td>{this.props.index+1}</td>
@@ -76,7 +76,6 @@ class Students extends Component {
         <td>{student.FULLNAME}</td>
         <td>{student.CNAME}</td>
         <td>{student.FNAME}</td>
-        <td>{student.MNAME}</td>
         <td>
           <button type="button" className="btn btn-md btn-info"  onClick={this.getDetail} data-toggle="modal"
                   data-target="#StudentDetail">
