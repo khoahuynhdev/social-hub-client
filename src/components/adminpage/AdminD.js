@@ -36,8 +36,7 @@ class AdminD extends Component {
               <div className="row">
                 <div className="col-4 mb-1">
                   <Link
-                    className="btn btn-block btn-myapp"
-                    onClick={() => this.props.resetStudentList([])}
+                    className="btn btn-block btn-myapp"                    
                     to="./"
                   >
                     Danh Sách Sinh Viên

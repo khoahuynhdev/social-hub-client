@@ -17,7 +17,7 @@ const studentReducer = (state = initialState, action) => {
     case "RESET_STARRAY":
       data = action.value;
       return data;
-      default:
+    default:
         break;
   }
   return state;

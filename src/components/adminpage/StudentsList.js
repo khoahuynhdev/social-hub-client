@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Students from "./Students";
-import { getStudentList, getStudentListCount } from "../../action/adminauth/index";
+import { getStudentList, getStudentListCount, resetStudentList } from "../../action/adminauth/index";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { connect } from "react-redux";
 class StudentList extends Component {
@@ -9,20 +9,19 @@ class StudentList extends Component {
     this.state = {
       hasMore: true,
       skip: 0,
-      studentCount: 0
+      studentCount: 1
     };
   }
-  
+
   componentDidMount() {
-    getStudentListCount(count => {
+    this.props.resetStudentList([]);
+    getStudentListCount(count => {      
       this.setState({ studentCount: count || 1 }, this.fetchMoreData)
     });
   }
 
   fetchMoreData = () => {
-    if (this.props.students.length >= this.state.studentCount) {
-      return this.setState({ hasMore: false })
-    }
+    if (this.props.students.length >= this.state.studentCount) return this.setState({ hasMore: false })
     this.props.getStudentList({ skip: this.state.skip, limit: 20 });
     this.setState({ skip: this.state.skip + 20 });
   }
@@ -76,6 +75,7 @@ class StudentList extends Component {
                 </tr>
               </thead>
               <tbody>
+
                 {this.props.students.map((item, index) => {
                   return (
                     <Students
@@ -103,5 +103,5 @@ const mapStateToProps = state => {
 };
 export default connect(
   mapStateToProps,
-  { getStudentList }
+  { getStudentList, resetStudentList }
 )(StudentList);
