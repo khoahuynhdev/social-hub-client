@@ -45,7 +45,7 @@ class ActivityJoinList extends Component {
 				</div>
 				<div className="row mb-auto mt-auto card-body">
 					<div className="col-6 col-sm-4 input-group">
-						<div>Điểm Rèn Luyện: {totalPoint}</div>
+						<div className="text-primary">Điểm Rèn Luyện: {totalPoint}</div>
 					</div>
 				</div>				
 				<table className="table table-hover ml-auto mr-auto">
