@@ -35,6 +35,9 @@ class ActivityJoinList extends Component {
 	}
 
 	render() {
+		let totalPoint = this.props.jointActivities.filter(ac => ac.STATE !== 'Registered').map(ac => ac.AC_POINT).reduce((pre, cur) => {			
+			return pre + cur
+		},0)
 		return (
 			<div className="card">
 				<div className="card-header">
@@ -42,7 +45,7 @@ class ActivityJoinList extends Component {
 				</div>
 				<div className="row mb-auto mt-auto card-body">
 					<div className="col-6 col-sm-4 input-group">
-						<div>diem ren luyen</div>
+						<div>Điểm Rèn Luyện: {totalPoint}</div>
 					</div>
 				</div>				
 				<table className="table table-hover ml-auto mr-auto">
