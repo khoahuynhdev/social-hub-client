@@ -24,7 +24,7 @@ class Information extends Component {
     
   }
 
-  responseFacebook = (response) => { 
+  responseFacebook = (response) => {    
     if (response.id) {
       const data = {
         facebookID: response.id
@@ -134,11 +134,11 @@ class Information extends Component {
               <div className="card mb-1">
                 <div className="form-row m-1 card-body">
                   <div className="col-6">
-                    <label htmlFor="txtTenHoatDong">
+                    <label htmlFor="txtFaculty">
                       <h6>Khoa</h6>
                     </label>
                     <input
-                      name="txtTenHoatDong"
+                      name="txtFaculty"
                       className="form-control"
                       id="txtKhoa"
                       type="text"
@@ -147,11 +147,11 @@ class Information extends Component {
                     />
                   </div>
                   <div className=" col-6">
-                    <label htmlFor="txtTenHoatDong">
+                    <label htmlFor="txtMajor">
                       <h6>Ngành</h6>
                     </label>
                     <input
-                      name="txtTenHoatDong"
+                      name="txtMajor"
                       className="form-control"
                       id="txtNganh"
                       type="text"
@@ -160,11 +160,11 @@ class Information extends Component {
                     />
                   </div>
                   <div className=" col-6">
-                    <label htmlFor="txtTenHoatDong">
+                    <label htmlFor="txtClass">
                       <h6>Lớp</h6>
                     </label>
                     <input
-                      name="txtTenHoatDong"
+                      name="txtClass"
                       className="form-control"
                       id="txtLop"
                       type="text"
@@ -173,11 +173,11 @@ class Information extends Component {
                     />
                   </div>
                   <div className=" col-6">
-                    <label htmlFor="txtTenHoatDong">
+                    <label htmlFor="txtACADEMIC_YEAR">
                       <h6>Khóa</h6>
                     </label>
                     <input
-                      name="txtTenHoatDong"
+                      name="txtACADEMIC_YEAR"
                       className="form-control"
                       id="txtLop"
                       type="text"
@@ -190,7 +190,7 @@ class Information extends Component {
               <div className="text-center">
                 <Link
                   className="btn btn-myapp mr-1"
-                  name="btnHuy"
+                  name="btnChangePassword"
                   type="button"
                   to="./changepassword"
                   replace
@@ -198,7 +198,7 @@ class Information extends Component {
 
                 <input
                   className="btn btn-myapp3"
-                  name="btnGui"
+                  name="btnUpdateNewInfo"
                   type="submit"
                   value="Lưu lại thông tin"
                 />
