@@ -13,7 +13,7 @@ class AdminProfile extends Component {
 		const data = localStorage.getItem('admintoken')
 		if (data) {
 			const admin = jwtDecode(data)
-			this.setState({fullname: admin.fullname})
+			this.setState({ fullname: admin.fullname })
 		}
 	}
 
@@ -21,7 +21,7 @@ class AdminProfile extends Component {
 		localStorage.clear()
 		this.props.history.push('/adminlogin')
 	}
-	
+
 	render() {
 		return (
 			<div className="text-center">

@@ -8,6 +8,7 @@ class Adminloginpage extends Component {
 		this.state = {
 			username: "",
 			password: "",
+			error: null
 		}
 	}
 
@@ -30,7 +31,10 @@ class Adminloginpage extends Component {
 					this.props.history.push(`/admin/${this.state.username}`);
 				}
 			})
-			.catch(console.log)
+			.catch(err => {
+				// console.log(err.response.data.error);
+				if (err.response.data && err.response.data.error) this.setState({error: err.response.data.error})
+			})
 	}
 
 	getAdminData = () => {
@@ -47,6 +51,7 @@ class Adminloginpage extends Component {
 					<div className="card mb-4 f-elm text-center w-50 ml-auto mr-auto">
 						<div className="card-header bg-main text-light align-middle">
 							<h4>Đăng Nhập vào trang Admin</h4>
+							<small className="text-danger">{this.state.error}</small>
 						</div>
 						<div className="card-body">
 							<form onSubmit={this.onSubmit}>
