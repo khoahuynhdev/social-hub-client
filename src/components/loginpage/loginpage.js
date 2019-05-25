@@ -49,6 +49,10 @@ class loginpage extends Component {
     });
   }
 
+  handleForgetPassword = () => {
+    alert('Tính năng đang được phát triển!');
+  }
+
   render() {
     if (this.props.auth.isAuthenticated) {
       return <Redirect to={`/students/${this.props.auth.profile.ID}/`} />
@@ -100,6 +104,7 @@ class loginpage extends Component {
                     <button
                       type="button"
                       className="btn btn-default btn-block"
+                      onClick={this.handleForgetPassword}
                     >
                       Quên Mật Khẩu ?
                     </button>
