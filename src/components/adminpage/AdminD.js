@@ -17,17 +17,16 @@ import JoinYc from "../model/JoinYc";
 import NotiList from "./NotiList";
 import Sender from "../model/Sender";
 class AdminD extends Component {
-  componentDidMount() {
-    // console.log(this.props.match.url);
-    return <Redirect to={this.props.match.url} />;
-  }
-  render() {
+  
+  render() {    
+    const data = localStorage.getItem('admintoken')
+    if (!data) return <Redirect to="/adminlogin" />
     return (
       <div>
         <div className="col-12">
           <div className="card">
             <div className="card-header">
-              <AdminProfile />
+              <AdminProfile history={this.props.history}/>
             </div>
             <div className="card-body">
               <ActivityBtn />
