@@ -8,7 +8,7 @@ class Navbar extends Component {
     super(props);
     this.state = {
       profile: null,
-      isAuthenticated: false
+      isAuthenticated: false,
     }
   }
 
@@ -18,16 +18,16 @@ class Navbar extends Component {
       if (token) {
         const decoded = jwtDecode(token)
         this.props.setCurrentUser(decoded);
-      }      
+      }
     } catch (error) {
       localStorage.removeItem('token');
       localStorage.removeItem('fingerprint');
       this.props.setCurrentUser({});
     }
-  }  
+  }
 
 
-  render() {    
+  render() {
     return (
       <div>
         <nav className="navbar navbar-expand navbar-light fixed-top">

@@ -36,7 +36,7 @@ class AdminD extends Component {
                 <div className="col-4 mb-1">
                   <Link
                     className="btn btn-block btn-myapp"                    
-                    to="./"
+                    to={`${this.props.match.url}`}
                   >
                     Danh Sách Sinh Viên
                   </Link>
@@ -44,7 +44,7 @@ class AdminD extends Component {
                 <div className="col-4 mb-1">
                   {" "}
                   <Link className="btn btn-block btn-myapp"
-                    to="./pendingjoinYC"
+                    to={`${this.props.match.url}/pendingjoinHSV`}
                     onClick={() => this.props.resetStudentList([])}>
                     Danh Sách Chuyển Sinh Hoạt Đoàn
                   </Link>
@@ -52,20 +52,20 @@ class AdminD extends Component {
                 <div className="col-4 mb-1">
                   <Link
                     className="btn btn-block btn-myapp"
-                    to="./pendingjoinHSV"
+                    to={`${this.props.match.url}/pendingjoinYC`}
                     onClick={() => this.props.resetStudentList([])}
                   >
                     Danh Sách Đăng Ký Vào HSV
                   </Link>
                 </div>
                 <div className="col-4 mb-1">
-                  <Link className="btn btn-block btn-myapp" to="./activity">
+                  <Link className="btn btn-block btn-myapp" to={`${this.props.match.url}/activity`}>
                     Danh Sách Hoạt Động
                   </Link>
                 </div>
                 <div className="col-4 mb-1">
                   {" "}
-                  <Link className="btn btn-block btn-myapp" to="./notis">
+                  <Link className="btn btn-block btn-myapp" to={`${this.props.match.url}/notis`}>
                     Danh Sách Thông Báo
                   </Link>
                 </div>
@@ -106,7 +106,7 @@ class AdminD extends Component {
               path={`${this.props.match.url}/:aid`}
               component={StudentActivity}
             />
-            <Route path={`/`} component={StudentsList} />
+            <Route path={`${this.props.match.url}/`} component={StudentsList} />
           </Switch>
         </div>
         <ActivityModel />
