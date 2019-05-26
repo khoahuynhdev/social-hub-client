@@ -34,7 +34,7 @@ class Students extends Component {
     switch (types) {
       case 'STList':
         return axios
-      .post('http://localhost:5000/api/admins/resetStudent',this.props.item)
+      .post('https://server-socialhub.herokuapp.com/api/admins/resetStudent',this.props.item)
         .then(res=>{
           if(res.data.msg==='SUCCESS'){
             alert("Sinh viên đã được khôi phục tài khoản về trạng thái ban đầu")
@@ -44,7 +44,7 @@ class Students extends Component {
       
        case 'Registered':
             return axios
-            .post('http://localhost:5000/api/admins/checkinstudent',this.props.item)
+            .post('https://server-socialhub.herokuapp.com/api/admins/checkinstudent',this.props.item)
               .then(res=>{
                 if(res.data.msg==='Success') {
                   this.setState({types:""})
@@ -53,7 +53,7 @@ class Students extends Component {
               .catch(err=>console.log(err.error))
         case 'Pending':
           return axios
-            .post('http://localhost:5000/api/admins/acceptstudent',this.props.item)
+            .post('https://server-socialhub.herokuapp.com/api/admins/acceptstudent',this.props.item)
               .then(res=>{
                 console.log(res.data)
                 if(res.data.msg==='Success') {

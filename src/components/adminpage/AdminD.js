@@ -23,7 +23,7 @@ class AdminD extends Component {
     return <Redirect to={this.props.match.url} />;
   }
   getReport = () => {
-    Axios.get("http://localhost:5000/api/admins/reportpoint")
+    Axios.get("https://server-socialhub.herokuapp.com/api/admins/reportpoint")
       .then(response => {
         response.data.options.responseType = "blob";
         Axios(response.data.options).then(response => {
@@ -38,7 +38,7 @@ class AdminD extends Component {
       .catch(err => alert("failed"));
   };
   getReportCSHD = () => {
-    Axios.get("http://localhost:5000/api/admins/reportcshd")
+    Axios.get("https://server-socialhub.herokuapp.com/api/admins/reportcshd")
       .then(response => {
         response.data.options.responseType = "blob";
         Axios(response.data.options).then(response => {
@@ -53,7 +53,7 @@ class AdminD extends Component {
       .catch(err => alert("failed"));
   };
   getReportHSV = () => {
-    Axios.get("http://localhost:5000/api/admins/reporthsv")
+    Axios.get("https://server-socialhub.herokuapp.com/api/admins/reporthsv")
       .then(response => {
         response.data.options.responseType = "blob";
         Axios(response.data.options).then(response => {

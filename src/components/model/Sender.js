@@ -14,7 +14,7 @@ class Sender extends Component {
     };
   }
   SendAll = () => {
-    Axios.post(`http://localhost:5000/api/notis/notisend`, { NM_ID: this.props.noti.NM_ID, ISALL: 1 })
+    Axios.post(`https://server-socialhub.herokuapp.com/api/notis/notisend`, { NM_ID: this.props.noti.NM_ID, ISALL: 1 })
       .then(res => {
         if (res.res === "win") alert("Gửi Thành Công");
       })
@@ -29,7 +29,7 @@ class Sender extends Component {
       NM_ID: this.props.noti.NM_ID,
     }
     e.preventDefault();
-    Axios.post(`http://localhost:5000/api/notis/notisend`, Send)
+    Axios.post(`https://server-socialhub.herokuapp.com/api/notis/notisend`, Send)
       .then(res => {
         if (res.res === "win") alert("Gửi Thành Công");
       })
@@ -37,7 +37,7 @@ class Sender extends Component {
   }
 
   componentDidMount = () => {
-    Axios.get(`http://localhost:5000/api/admins/getclass`)
+    Axios.get(`https://server-socialhub.herokuapp.com/api/admins/getclass`)
       .then(result => this.setState({
         classes: result.data
       }))

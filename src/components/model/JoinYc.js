@@ -80,7 +80,7 @@ class JoinYc extends Component {
     e.preventDefault();
     axios
         .post(
-          "http://localhost:5000/api/admins/acceptstudentyc",
+          "https://server-socialhub.herokuapp.com/api/admins/acceptstudentyc",
           this.state
         )
         .then(res => {

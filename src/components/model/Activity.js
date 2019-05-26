@@ -49,7 +49,7 @@ class Activity extends Component {
     if (this.props.isAddNewActivity) {
       axios
         .post(
-          "http://localhost:5000/api/activities/createNewActivity",
+          "https://server-socialhub.herokuapp.com/api/activities/createNewActivity",
           this.state
         )
         .then(res => {
@@ -61,7 +61,7 @@ class Activity extends Component {
     } else {
       axios
         .post(
-          "http://localhost:5000/api/activities/editActivity",
+          "https://server-socialhub.herokuapp.com/api/activities/editActivity",
           this.state
         )
         .then(res => {

@@ -15,7 +15,7 @@ class MainDashB extends Component {
 		}
 	}
 	componentDidMount() {		
-		axios.get(`http://localhost:5000/api/activities/count`)
+		axios.get(`https://server-socialhub.herokuapp.com/api/activities/count`)
 			.then(result => {
 				this.props.resetFetchActivities([]);
 				this.setState({ activitiesCount: result.data.activities }, () => {

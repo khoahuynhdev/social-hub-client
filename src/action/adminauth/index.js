@@ -1,7 +1,7 @@
 import Axios from 'axios';
 
 export const getStudentListCount = (callback) => {
-	Axios.get(`http://localhost:5000/api/admins/studentlist/count`)
+	Axios.get(`https://server-socialhub.herokuapp.com/api/admins/studentlist/count`)
 		.then(result => {			
 			if (callback) callback(result.data.students)
 		})
@@ -9,7 +9,7 @@ export const getStudentListCount = (callback) => {
 }
 export const getStudentList = (data) => {
 	return function (dispatch) {
-		Axios.get(`http://localhost:5000/api/admins/studentlist/?skip=${data.skip}&limit=${data.limit}`)
+		Axios.get(`https://server-socialhub.herokuapp.com/api/admins/studentlist/?skip=${data.skip}&limit=${data.limit}`)
 			.then(res => dispatch({
 				type: "GET_STUDENTLIST",
 				data: res.data
@@ -21,7 +21,7 @@ export const getStudentList = (data) => {
 }
 export const getActivityStudentList = (data) => {
 	return function (dispatch) {
-		Axios.get(`http://localhost:5000/api/admins/activitystudent/?skip=${data.skip}&limit=${data.limit}&A_ID=${data.A_ID}`)
+		Axios.get(`https://server-socialhub.herokuapp.com/api/admins/activitystudent/?skip=${data.skip}&limit=${data.limit}&A_ID=${data.A_ID}`)
 			.then(res => {
 				// console.log(res.data)
 				return dispatch({
@@ -37,7 +37,7 @@ export const getActivityStudentList = (data) => {
 }
 export const getHSVStudentList = (data) => {
 	return function (dispatch) {
-		Axios.get(`http://localhost:5000/api/admins/studentcommunity/?skip=${data.skip}&limit=${data.limit}`)
+		Axios.get(`https://server-socialhub.herokuapp.com/api/admins/studentcommunity/?skip=${data.skip}&limit=${data.limit}`)
 			.then(res => {
 				console.log(res.data)
 				return dispatch({
@@ -53,7 +53,7 @@ export const getHSVStudentList = (data) => {
 }
 export const getYouthStudentList = (data) => {
 	return function (dispatch) {
-		Axios.get(`http://localhost:5000/api/admins/getyclist/?skip=${data.skip}&limit=${data.limit}`)
+		Axios.get(`https://server-socialhub.herokuapp.com/api/admins/getyclist/?skip=${data.skip}&limit=${data.limit}`)
 			.then(res => {
 				console.log(res.data)
 				return dispatch({

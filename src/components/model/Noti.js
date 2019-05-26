@@ -15,7 +15,7 @@ class Noti extends Component {
     console.log(this.props.isAddNewActivity);
       axios
         .post(
-          "http://localhost:5000/api/notis/notipost",
+          "https://server-socialhub.herokuapp.com/api/notis/notipost",
           this.state
         )
         .then(res => {

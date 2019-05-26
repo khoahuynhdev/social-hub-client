@@ -17,7 +17,7 @@ class NotificationDashB extends Component {
 	}
 
 	componentDidMount() {		
-		axios.get(`http://localhost:5000/api/notis/count`)
+		axios.get(`https://server-socialhub.herokuapp.com/api/notis/count`)
 			.then(result => {
 				this.props.resetFetchNotis([])
 				this.setState({ notisCount: result.data.notis }, () => {

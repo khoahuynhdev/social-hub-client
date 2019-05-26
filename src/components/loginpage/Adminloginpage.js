@@ -24,7 +24,7 @@ class Adminloginpage extends Component {
 	onSubmit = (e) => {
 		e.preventDefault();
 		axios
-			.post('http://localhost:5000/api/admins/login', this.state)
+			.post('https://server-socialhub.herokuapp.com/api/admins/login', this.state)
 			.then(res => {
 				if (res.data.msg === 'Login Success') {
 					localStorage.setItem("admintoken", res.data.admintoken)
