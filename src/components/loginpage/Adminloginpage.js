@@ -28,7 +28,7 @@ class Adminloginpage extends Component {
 			.then(res => {
 				if (res.data.msg === 'Login Success') {
 					localStorage.setItem("admintoken", res.data.admintoken)
-					this.props.history.replace(`/admin/${this.state.username}`);
+					this.props.history.push(`/admin/${this.state.username}`);
 				}
 			})
 			.catch(err => {
