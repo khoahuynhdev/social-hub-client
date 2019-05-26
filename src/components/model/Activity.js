@@ -54,9 +54,10 @@ class Activity extends Component {
         )
         .then(res => {
           if (res.data.msg === "Create New Activity Success") {
+            alert("Tạo Hoạt Động Thành Công")
           }
         })
-        .catch(console.log);
+        .catch(err=>alert("Tạo Hoạt Động Thành Công"));
     } else {
       axios
         .post(
@@ -65,9 +66,10 @@ class Activity extends Component {
         )
         .then(res => {
           if (res.data.msg === "Create New Activity Success") {
+            alert("Sửa Hoạt Động Thành Công")
           }
         })
-        .catch(console.log);
+        .catch(err=>alert("Sửa Hoạt Động Thành Công"));
     }
   };
   render() {
@@ -209,6 +211,8 @@ class Activity extends Component {
                     name="btnHuy"
                     id="btnHuy"
                     type="button"
+                data-dismiss="modal"
+                aria-label="Close"
                     value="Huỷ"
                   />
                 </div>

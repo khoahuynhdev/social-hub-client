@@ -18,6 +18,7 @@ class JoinYc extends Component {
       SIGNED_PLACE: "",
       AMOUNT: "",
       TDATE: "",
+      STATE:"",
       isaccept:false,
     };
   }
@@ -36,6 +37,7 @@ class JoinYc extends Component {
       SIGNED_APPROVAL: "",
       SIGNED_PLACE: "",
       AMOUNT: "",
+      STATE:"",
       TDATE: ""
         })
     }
@@ -52,6 +54,7 @@ class JoinYc extends Component {
       SIGNED_APPROVAL,
       SIGNED_PLACE,
       AMOUNT,
+      STATE,
       TDATE
     } = nextProps.StudentDetail;
     this.setState(
@@ -67,6 +70,7 @@ class JoinYc extends Component {
         SIGNED_APPROVAL,
         SIGNED_PLACE,
         AMOUNT,
+        STATE,
         TDATE
       },
       () => console.log(this.state.A_ID)
@@ -82,9 +86,13 @@ class JoinYc extends Component {
         )
         .then(res => {
           if (res.data.msg === "Insert Success") {
+            this.setState({STATE:"Accepted"})
+          }
+          else{
+            alert("Vui Lòng Xem Lại Thông Tin Nhập Duyệt")
           }
         })
-        .catch(console.log);
+        .catch(err=>alert("Duyệt không thành công .Có vấn đề với thông tin nhập vào vui lòng xem lại trước khi duyệt"));
   };
 
   onChange = event => {
@@ -93,8 +101,9 @@ class JoinYc extends Component {
     });
   };
   render() {
+    console.log(this.state.STATE)
     return (
-      <form onSubmit={this.Submit}>
+      <form onSubmit={this.state.STATE==="Pending"?this.Submit:""}>
         <div
           className="modal fade"
           id="YCDETAIL"
@@ -132,7 +141,7 @@ class JoinYc extends Component {
                           className="form-control"
                           id=""
                           type="text"
-                      
+                          value={this.state.CMND}
                           onChange={this.onChange}
                         />
                       </div>
@@ -145,7 +154,7 @@ class JoinYc extends Component {
                           className="form-control"
                           id=""
                           type="text"
-
+                          value={this.state.CMND_PLACE}
                           onChange={this.onChange}
                         />
                       </div>
@@ -158,6 +167,7 @@ class JoinYc extends Component {
                           className="form-control"
                           id=""
                           type="date"
+                          value={this.state.CMND_DATE}
                                onChange={this.onChange}
                         />
                       </div>
@@ -170,6 +180,7 @@ class JoinYc extends Component {
                           className="form-control"
                           id=""
                           type="text"
+                          value={this.state.RACE}
                                 onChange={this.onChange}
                         />
                       </div>
@@ -182,6 +193,8 @@ class JoinYc extends Component {
                           className="form-control"
                           id=""
                           type="text"
+                          
+                          value={this.state.RELIGION}
                              onChange={this.onChange}
                         />
                       </div>
@@ -198,6 +211,7 @@ class JoinYc extends Component {
                           className="form-control"
                           id="txtKhoa"
                           type="text"
+                          value={this.state.APPROVAL_NUMBER}
                            onChange={this.onChange}
                         />
                       </div>
@@ -210,6 +224,7 @@ class JoinYc extends Component {
                           className="form-control"
                           id="txtNganh"
                           type="date"
+                          value={this.state.SIGNED_DATE}
                             onChange={this.onChange}
                         />{" "}
                       </div>
@@ -222,6 +237,7 @@ class JoinYc extends Component {
                           className="form-control"
                           id="txtLop"
                           type="text"
+                          value={this.state.SIGNED_PLACE}
                            onChange={this.onChange}
                         />
                       </div>
@@ -234,6 +250,7 @@ class JoinYc extends Component {
                           className="form-control"
                           id="txtLop"
                           type="text"
+                          value={this.state.SIGNED_APPROVAL}
                            onChange={this.onChange}
                         />
                       </div>
@@ -247,7 +264,7 @@ class JoinYc extends Component {
                     type="submit"
                     className="btn btn-primary"
                   >
-                    Duyệt
+                    {this.state.STATE==="Pending"?"Duyệt":"Đã Duyệt"}
                   </button>
                   <button
                     type="button"

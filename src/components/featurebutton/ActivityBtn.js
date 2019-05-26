@@ -31,8 +31,9 @@ class ActivityBtn extends Component {
             type="button"
             data-toggle="modal"
             data-target="#NotiModel"
+            disabled
           >
-            Đổi mật khẩu
+            Đổi mật khẩu(Đang Xây Dựng)
           </button>
           </div>
           <div className="col-6 mt-2"><button
@@ -40,8 +41,9 @@ class ActivityBtn extends Component {
             type="button"
             data-toggle="modal"
             data-target="#NotiModel"
+            disabled
           >
-            Tạo Tài Khoản Admin Mới
+            Tạo Tài Khoản Admin Mới(Đang Xây Dựng)
           </button>
           </div>
           

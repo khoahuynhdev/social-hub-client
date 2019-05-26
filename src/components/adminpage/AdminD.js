@@ -17,11 +17,57 @@ import { joinYC } from "../../actions/auth";
 import JoinYc from "../model/JoinYc";
 import NotiList from "./NotiList";
 import Sender from "../model/Sender";
+import Axios from "axios";
 class AdminD extends Component {
   componentDidMount() {
     console.log(this.props.match.url);
     return <Redirect to={this.props.match.url} />;
   }
+  getReport = () => {
+    Axios.get("http://localhost:5000/api/admins/reportpoint")
+      .then(response => {
+        response.data.options.responseType = "blob";
+        Axios(response.data.options).then(response => {
+          const url = window.URL.createObjectURL(new Blob([response.data]));
+          const link = document.createElement("a");
+          link.href = url;
+          link.setAttribute("download", "invoice-main.pdf");
+          document.body.appendChild(link);
+          link.click();
+        });
+      })
+      .catch(err => alert("failed"));
+  };
+  getReportCSHD = () => {
+    Axios.get("http://localhost:5000/api/admins/reportcshd")
+      .then(response => {
+        response.data.options.responseType = "blob";
+        Axios(response.data.options).then(response => {
+          const url = window.URL.createObjectURL(new Blob([response.data]));
+          const link = document.createElement("a");
+          link.href = url;
+          link.setAttribute("download", "cshd.pdf");
+          document.body.appendChild(link);
+          link.click();
+        });
+      })
+      .catch(err => alert("failed"));
+  };
+  getReportHSV = () => {
+    Axios.get("http://localhost:5000/api/admins/reporthsv")
+      .then(response => {
+        response.data.options.responseType = "blob";
+        Axios(response.data.options).then(response => {
+          const url = window.URL.createObjectURL(new Blob([response.data]));
+          const link = document.createElement("a");
+          link.href = url;
+          link.setAttribute("download", "community.pdf");
+          document.body.appendChild(link);
+          link.click();
+        });
+      })
+      .catch(err => alert("failed"));
+  };
   render() {
     return (
       <div>
@@ -46,9 +92,11 @@ class AdminD extends Component {
                 </div>
                 <div className="col-4 mb-1">
                   {" "}
-                  <Link className="btn btn-block btn-myapp"
+                  <Link
+                    className="btn btn-block btn-myapp"
                     to="./pendingjoinYC"
-                    onClick={() => this.props.resetStudentList([])}>
+                    onClick={() => this.props.resetStudentList([])}
+                  >
                     Danh Sách Chuyển Sinh Hoạt Đoàn
                   </Link>
                 </div>
@@ -75,9 +123,29 @@ class AdminD extends Component {
 
                 <div className="col-4 mb-1">
                   {" "}
-                  <button className="btn btn-block btn-myapp">
-                    Lập Báo Cáo
-                  </button>
+                  <div class="btn-group btn-block" role="group">
+                    <button
+                      id="btnGroupDrop1"
+                      className="btn btn-myapp btn-block btn-block dropdown-toggle"
+                      data-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                    >
+                      Lập Báo Cáo Sinh Viên
+                    </button>
+                    <div className="dropdown-menu btn-block" aria-labelledby="btnGroupDrop1">
+                      <button className="dropdown-item" onClick={this.getReport}>
+                        Báo Cáo Điểm Rèn Luyện
+                      </button>
+                      <button className="dropdown-item" onClick={this.getReportCSHD}>
+                      Báo Cáo Chuyển Sinh Hoạt Đoàn
+                      </button>
+                  
+                      <button className="dropdown-item" onClick={this.getReportHSV}>
+                      Báo Cáo Gia Nhập Hội Sinh Viên                                                                    
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -114,10 +182,10 @@ class AdminD extends Component {
         </div>
         <ActivityModel />
         <StudentDetail />
-        <JoinYc/>
-        <Sender/>
+        <JoinYc />
+        <Sender />
         <ActivityM adminID={this.props.match.params.admin} />
-        <Noti adminID={this.props.match.params.admin}/>
+        <Noti adminID={this.props.match.params.admin} />
       </div>
     );
   }

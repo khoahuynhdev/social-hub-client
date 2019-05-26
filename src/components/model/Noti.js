@@ -21,9 +21,9 @@ class Noti extends Component {
           this.state
         )
         .then(res => {
-          console.log(res)
+          alert("Tạo Thông Báo Thành Công")
         })
-        .catch(console.log);
+        .catch(err=>alert("Tạo Thông Báo Thất Bại"));
   }
   onChange = event => {
     this.setState({
@@ -103,6 +103,8 @@ class Noti extends Component {
                     className="btn btn-myapp ml-1"
                     name="btnHuy"
                     id="btnHuy"
+                    data-dismiss="modal"
+                aria-label="Close"
                     type="button"
                     value="Huỷ"
                   />

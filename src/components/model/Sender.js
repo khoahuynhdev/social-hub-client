@@ -152,6 +152,8 @@ class Sender extends Component {
                     name="btnHuy"
                     id="btnHuy"
                     type="button"
+                    data-dismiss="modal"
+                aria-label="Close"
                     value="Huỷ"
                   />
               </form>
