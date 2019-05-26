@@ -11,13 +11,13 @@ class MainDashB extends Component {
 			hasMore: true,
 			skip: 0,
 			limit: 10,
-			activitiesCount: 0
+			activitiesCount: 1
 		}
 	}
-	componentDidMount() {
-		this.props.resetFetchActivities([]);
+	componentDidMount() {		
 		axios.get(`http://localhost:5000/api/activities/count`)
 			.then(result => {
+				this.props.resetFetchActivities([]);
 				this.setState({ activitiesCount: result.data.activities }, () => {
 					this.fetchMoreData()
 				})

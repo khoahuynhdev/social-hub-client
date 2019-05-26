@@ -13,7 +13,6 @@ import { connect } from "react-redux";
 import { resetStudentList } from "../../action/adminauth/index";
 import StudentHSV from "./StudentHSV";
 import StudentYC from "./StudentYC";
-import { joinYC } from "../../actions/auth";
 import JoinYc from "../model/JoinYc";
 import NotiList from "./NotiList";
 import Sender from "../model/Sender";
@@ -68,13 +67,15 @@ class AdminD extends Component {
       })
       .catch(err => alert("failed"));
   };
-  render() {
+  render() {    
+    const data = localStorage.getItem('admintoken')
+    if (!data) return <Redirect to="/adminlogin" />
     return (
       <div>
         <div className="col-12">
           <div className="card">
             <div className="card-header">
-              <AdminProfile />
+              <AdminProfile history={this.props.history}/>
             </div>
             <div className="card-body">
               <ActivityBtn />
@@ -83,40 +84,37 @@ class AdminD extends Component {
               <div className="row">
                 <div className="col-4 mb-1">
                   <Link
-                    className="btn btn-block btn-myapp"
-                    onClick={() => this.props.resetStudentList([])}
-                    to="./"
+                    className="btn btn-block btn-myapp"                    
+                    to={`${this.props.match.url}`}
                   >
                     Danh Sách Sinh Viên
                   </Link>
                 </div>
                 <div className="col-4 mb-1">
                   {" "}
-                  <Link
-                    className="btn btn-block btn-myapp"
-                    to="./pendingjoinYC"
-                    onClick={() => this.props.resetStudentList([])}
-                  >
+                  <Link className="btn btn-block btn-myapp"
+                    to={`${this.props.match.url}/pendingjoinHSV`}
+                    onClick={() => this.props.resetStudentList([])}>
                     Danh Sách Chuyển Sinh Hoạt Đoàn
                   </Link>
                 </div>
                 <div className="col-4 mb-1">
                   <Link
                     className="btn btn-block btn-myapp"
-                    to="./pendingjoinHSV"
+                    to={`${this.props.match.url}/pendingjoinYC`}
                     onClick={() => this.props.resetStudentList([])}
                   >
                     Danh Sách Đăng Ký Vào HSV
                   </Link>
                 </div>
                 <div className="col-4 mb-1">
-                  <Link className="btn btn-block btn-myapp" to="./activity">
+                  <Link className="btn btn-block btn-myapp" to={`${this.props.match.url}/activity`}>
                     Danh Sách Hoạt Động
                   </Link>
                 </div>
                 <div className="col-4 mb-1">
                   {" "}
-                  <Link className="btn btn-block btn-myapp" to="./notis">
+                  <Link className="btn btn-block btn-myapp" to={`${this.props.match.url}/notis`}>
                     Danh Sách Thông Báo
                   </Link>
                 </div>
@@ -177,7 +175,7 @@ class AdminD extends Component {
               path={`${this.props.match.url}/:aid`}
               component={StudentActivity}
             />
-            <Route path={`/`} component={StudentsList} />
+            <Route path={`${this.props.match.url}/`} component={StudentsList} />
           </Switch>
         </div>
         <ActivityModel />

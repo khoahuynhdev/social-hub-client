@@ -12,14 +12,14 @@ class NotificationDashB extends Component {
 			hasMore: true,
 			skip: 0,
 			limit: 10,
-			notisCount: 0
+			notisCount: 1
 		}
 	}
 
-	componentDidMount() {
-		this.props.resetFetchNotis([])
+	componentDidMount() {		
 		axios.get(`http://localhost:5000/api/notis/count`)
 			.then(result => {
+				this.props.resetFetchNotis([])
 				this.setState({ notisCount: result.data.notis }, () => {
 					this.fetchMoreData()
 				})

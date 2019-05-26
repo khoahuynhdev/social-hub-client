@@ -1,28 +1,33 @@
 import React, { Component } from "react";
 import Students from "./Students";
-import { getStudentList } from "../../action/adminauth/index";
+import { getStudentList, getStudentListCount, resetStudentList } from "../../action/adminauth/index";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { connect } from "react-redux";
 class StudentList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      items: this.props.students,
       hasMore: true,
-      skip: 20,
-      limit: 20
+      skip: 0,
+      studentCount: 1
     };
   }
+
   componentDidMount() {
-      this.props.getStudentList({ skip: 0, limit: 20 });
+    this.props.resetStudentList([]);
+    getStudentListCount(count => {      
+      this.setState({ studentCount: count || 1 }, this.fetchMoreData)
+    });
   }
+
   fetchMoreData = () => {
-    console.log("getITem")
+    if (this.props.students.length >= this.state.studentCount) return this.setState({ hasMore: false })
     this.props.getStudentList({ skip: this.state.skip, limit: 20 });
-    this.setState({ skip: this.state.skip + 20, items: this.props.students });
-  };
+    this.setState({ skip: this.state.skip + 20 });
+  }
+
   render() {
-        return (
+    return (
       <div className="mt-5">
         <h1 className="text-center mb-5">Danh Sách Các Sinh Viên</h1>
         <div className="row mb-3">
@@ -45,46 +50,48 @@ class StudentList extends Component {
             </div>
           </div>
         </div>
-           <InfiniteScroll
-              dataLength={this.props.students.length}
-              next={this.fetchMoreData}
-              hasMore={this.state.hasMore}
-              loader={<h4 style={{ textAlign: "center" }}>Loading...</h4>}
-              endMessage={
-                <p style={{ textAlign: "center" }}>
-                  <b>Yay! You have seen it all</b>
-                </p>
-              }
-            >
+        <InfiniteScroll
+          dataLength={this.props.students.length}
+          next={this.fetchMoreData}
+          hasMore={this.state.hasMore}
+          loader={<h4 style={{ textAlign: "center" }}>Đang tải...</h4>}
+          endMessage={
+            <p style={{ textAlign: "center" }}>
+              <b>Bạn đã thấy hết sinh viên</b>
+            </p>
+          }
+        >
 
-        <table className="table table-hover">
-          <thead>
-            <tr>
-              <th>Stt</th>
-              <th>MSSV</th>
-              <th>Tên</th>
-              <th>Lớp</th>
-              <th>Khoa</th>
-              <th>Ngành</th>
-              <th>Chức Năng</th>
-            </tr>
-          </thead>
-          <tbody>
-              {this.props.students.map((item, index) => {
-      return (
-        <Students
-          key={index}
-          item={item}
-          index={index}
-          types="STList"
-        />
-      )})}
+          <div className="table-responsive">
+            <table className="table table-hover">
+              <thead>
+                <tr>
+                  <th>STT</th>
+                  <th>MSSV</th>
+                  <th>Tên</th>
+                  <th>Lớp</th>
+                  <th>Khoa</th>
+                  <th>Chức Năng</th>
+                </tr>
+              </thead>
+              <tbody>
 
-            
-            </tbody>
-        </table>
-           
-            </InfiniteScroll>
+                {this.props.students.map((item, index) => {
+                  return (
+                    <Students
+                      key={index}
+                      item={item}
+                      index={index}
+                      types="STList"
+                    />
+                  )
+                })}
+
+              </tbody>
+            </table>
+          </div>
+
+        </InfiniteScroll>
       </div>
     );
   }
@@ -94,7 +101,7 @@ const mapStateToProps = state => {
     students: state.studentList,
   };
 };
- export default connect(
+export default connect(
   mapStateToProps,
-  { getStudentList}
+  { getStudentList, resetStudentList }
 )(StudentList);

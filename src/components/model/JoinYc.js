@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { joinYC } from "../../actions/auth";
 import axios from "axios";
 class JoinYc extends Component {
   constructor(props) {
@@ -260,7 +259,6 @@ class JoinYc extends Component {
 
                 <div className="modal-footer">
                   <button
-                    type="button"
                     type="submit"
                     className="btn btn-primary"
                   >

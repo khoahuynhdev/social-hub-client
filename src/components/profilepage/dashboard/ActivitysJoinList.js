@@ -12,10 +12,10 @@ class ActivityJoinList extends Component {
 			activitiesCount: 0
 		}
 	}
-	componentDidMount() {
-		this.props.resetFetchJointActivities([]);
+	componentDidMount() {		
 		axios.get(`http://localhost:5000/api/activities/joint/count`)
 			.then(result => {
+				this.props.resetFetchJointActivities([]);
 				this.setState({ activitiesCount: result.data.activities }, () => {
 					this.fetchMoreData()
 				})				
@@ -35,6 +35,9 @@ class ActivityJoinList extends Component {
 	}
 
 	render() {
+		let totalPoint = this.props.jointActivities.filter(ac => ac.STATE !== 'Registered').map(ac => ac.AC_POINT).reduce((pre, cur) => {			
+			return pre + cur
+		},0)
 		return (
 			<div className="card">
 				<div className="card-header">
@@ -42,7 +45,7 @@ class ActivityJoinList extends Component {
 				</div>
 				<div className="row mb-auto mt-auto card-body">
 					<div className="col-6 col-sm-4 input-group">
-						<div>diem ren luyen</div>
+						<div className="text-primary">Điểm Rèn Luyện: {totalPoint}</div>
 					</div>
 				</div>				
 				<table className="table table-hover ml-auto mr-auto">
