@@ -1,5 +1,5 @@
 import * as types from '../actions/types';
-const initialState = null
+const initialState = {}
 
 const errorReducer = (state = initialState, action) => {
 
