@@ -4,6 +4,7 @@ import axios from 'axios';
 import * as types from './types'
 import { getError, setCurrentUser } from './auth';
 import setHeaders from '../utils/setHeaders';
+
 export const fetchActivities = (data) => {
 	return dispatch => {
 		axios.get(`http://localhost:5000/api/activities/?skip=${data.skip}&limit=${data.limit}`)

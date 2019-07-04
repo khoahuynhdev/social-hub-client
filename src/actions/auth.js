@@ -9,7 +9,7 @@ import setHeaders from '../utils/setHeaders';
 import { resetActivities, resetJointActivities, setActivityDetail, resetNotis } from '../actions/activity';
 export const activate = (data, callback) => {
 	return dispatch => {
-		axios.post('http://localhost:5000/api/users/activate', data)
+		axios.post('/api/users/activate', data)
 			.then(res => {
 				if (res.data.msg === 'SUCCESS') {
 					dispatch(getError(null))
@@ -32,13 +32,13 @@ export const resetActivate = () => {
 export const login = (data) => {
 	return (dispatch) => {
 		fingerprint(fp => {
-			axios.post(`http://localhost:5000/api/users/login`, { ...data, fingerprint: fp })
+			axios.post(`/api/users/login`, { ...data, fingerprint: fp })
 				.then(res => {
 					// change state for no errors
 					dispatch(getError(null));
 
 					const token = res.data.token;
-
+					
 					localStorage.setItem('token', token);
 					localStorage.setItem('fingerprint', fp);
 
@@ -59,7 +59,7 @@ export const login = (data) => {
 export const loginFB = (data) => {
 	return dispatch => {
 		fingerprint(fp => {
-			axios.post(`http://localhost:5000/api/users/loginfb`, { ...data, fingerprint: fp })
+			axios.post(`/api/users/loginfb`, { ...data, fingerprint: fp })
 				.then(res => {
 					// change state for no errors
 					dispatch(getError(null));
@@ -85,7 +85,7 @@ export const loginFB = (data) => {
 // log the user out
 export const logout = () => {
 	return dispatch => {
-		try {
+		try {			
 			localStorage.removeItem('token')
 			localStorage.removeItem('fingerprint')
 			dispatch(setCurrentUser({}))
@@ -105,7 +105,7 @@ export const logout = () => {
 
 export const postUpdateInfo = (data) => {
 	return dispatch => {
-		axios.post(`http://localhost:5000/api/users/update`, data)
+		axios.post(`/api/users/update`, data)
 			.then(result => {
 				dispatch(setUpdateInfo(result.data))
 			})
@@ -117,7 +117,7 @@ export const postUpdateInfo = (data) => {
 
 export const getUpdateInfo = (cb) => {
 	return dispatch => {
-		axios.get(`http://localhost:5000/api/users/update`)
+		axios.get(`/api/users/update`)
 			.then(result => {
 				dispatch(setUpdateInfo(result.data))
 				cb()
@@ -130,7 +130,7 @@ export const getUpdateInfo = (cb) => {
 
 export const getStudentCommunity = () => {
 	return dispatch => {
-		axios.get(`http://localhost:5000/api/users/getJoinstdc`)
+		axios.get(`/api/users/getJoinstdc`)
 			.then(result => {
 				dispatch(setStudentCommunity(result.data))
 			})
@@ -142,7 +142,7 @@ export const getStudentCommunity = () => {
 
 export const joinStudentCommunity = (data) => {
 	return dispatch => {
-		axios.post(`http://localhost:5000/api/users/joinstdc`, data)
+		axios.post(`/api/users/joinstdc`, data)
 			.then(result => {
 				dispatch(getError(null))
 				dispatch(setStudentCommunity(result.data))
@@ -155,7 +155,7 @@ export const joinStudentCommunity = (data) => {
 
 export const getJoinYC = () => {
 	return dispatch => {
-		axios.get(`http://localhost:5000/api/users/getJoinyc`)
+		axios.get(`/api/users/getJoinyc`)
 			.then(result => {
 				dispatch(getError(null))
 				dispatch(setJoinYC(result.data))
@@ -168,7 +168,7 @@ export const getJoinYC = () => {
 
 export const joinYC = () => {
 	return dispatch => {
-		axios.post(`http://localhost:5000/api/users/joinyc`)
+		axios.post(`/api/users/joinyc`)
 			.then(result => {
 				dispatch(getError(null))
 				dispatch(setJoinYC(result.data))
@@ -181,7 +181,7 @@ export const joinYC = () => {
 
 export const updateInfo = (data, callback) => {
 	return dispatch => {
-		axios.post('http://localhost:5000/api/users/updateInfo', data)
+		axios.post('/api/users/updateInfo', data)
 			.then(res => {
 				if (res.status === 200 && res.data.msg === 'SUCCESS') {
 					dispatch(getError(null))
@@ -196,7 +196,7 @@ export const updateInfo = (data, callback) => {
 
 export const connectFacebook = (data) => {
 	return dispatch => {
-		axios.post(`http://localhost:5000/api/users/updatefb`, data)
+		axios.post(`/api/users/updatefb`, data)
 			.then(result => {
 				dispatch(getError(null))				
 			})
@@ -208,7 +208,7 @@ export const connectFacebook = (data) => {
 
 export const changePassword = (data, callback) => {
 	return dispatch => {
-		axios.post(`http://localhost:5000/api/users/resetpassword`, data)
+		axios.post(`/api/users/resetpassword`, data)
 			.then(result => {
 				if (result.data.msg === 'SUCCESS'){
 					dispatch(getError(null))

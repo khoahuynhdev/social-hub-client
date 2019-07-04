@@ -6,6 +6,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "fingerprintjs2": "^2.0.6",
+    "http-proxy-middleware": "^0.19.1",
     "jwt-decode": "^2.2.0",
     "lodash": "^4.17.11",
     "moment": "^2.24.0",
